@@ -20,7 +20,7 @@ const uploadReport = async (photo, description, category) => {
   try {
     const report = {
       photo,
-      description,
+      description,  
       category,
     };
     const result = await Report.create(report);
@@ -57,6 +57,7 @@ const getReport = async (id) => {
 };
 
 module.exports = {
+  getReport,
   uploadReport,
   deleteReport,
   getAllReports,
