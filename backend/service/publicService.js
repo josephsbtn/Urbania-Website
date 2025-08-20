@@ -32,7 +32,32 @@ const getAllPolice = async () => {
   }
 };
 
+const getAllPark = async () => {
+  try {
+    const chached = await Redis.get("park");
+    if (chached) {
+      return chached;
+    }
+
+    const result = await Park.find({});
+    await Redis.set("park", result);
+    return result;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+// const CoveragePopulation = () => {
+//   try {
+
+//   } catch (error) {
+
+//   }
+// }
+
 module.exports = {
   getAllHostipals,
   getAllPolice,
+  getAllPark,
 };

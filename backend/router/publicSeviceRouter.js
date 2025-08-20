@@ -3,23 +3,33 @@ const router = express.Router();
 const {
   getAllHostipals,
   getAllPolice,
+  getAllPark,
 } = require("../service/publicService.js");
 
 router.get("/hospitals", async (req, res) => {
   try {
     const result = await getAllHostipals();
-    res.status(200).json({ result });
+    return res.status(200).json({ result });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 });
 
 router.get("/polices", async (req, res) => {
   try {
     const result = await getAllPolice();
-    res.status(200).json({ result });
+    return res.status(200).json({ result });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/parks", async (req, res) => {
+  try {
+    const result = await getAllPark();
+    return res.status(200).json({ result });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
 });
 
