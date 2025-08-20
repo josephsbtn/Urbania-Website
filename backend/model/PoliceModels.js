@@ -29,3 +29,7 @@ const policeSchema = new mongoose.Schema({
     type: String,
   },
 });
+
+const model = mongoose.model("Police", policeSchema);
+
+module.exports = model;
