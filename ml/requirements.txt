@@ -1,0 +1,13 @@
+flask
+tensorflow
+numpy
+pandas
+scikit-learn
+shapely
+pyproj
+requests
+tensorflow
+openpyxl
+xlrd
+ultralytics
+statsmodels
