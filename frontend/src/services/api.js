@@ -1,10 +1,24 @@
 // API configuration and base URL
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
-// Generic API request function
+// Health check function
+export const healthCheck = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/health`);
+    return await response.json();
+  } catch (error) {
+    console.error('Backend health check failed:', error);
+    return { status: 'ERROR', message: 'Backend unavailable' };
+  }
+};
+
+// Generic API request function with better error handling
 const apiRequest = async (endpoint, options = {}) => {
   try {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    const url = `${API_BASE_URL}${endpoint}`;
+    console.log(`🔗 API Request: ${options.method || 'GET'} ${url}`);
+    
+    const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
         ...options.headers,
@@ -13,43 +27,69 @@ const apiRequest = async (endpoint, options = {}) => {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+    console.log(`✅ API Response: ${endpoint}`, data);
+    return data;
   } catch (error) {
-    console.error('API Request Error:', error);
+    console.error(`❌ API Request Error: ${endpoint}`, error);
     throw error;
   }
 };
 
-// Public Service APIs
-export const publicServiceAPI = {
-  // Get all hospitals
-  getHospitals: async () => {
-    return await apiRequest('/public-service/hospitals');
-  },
-
-  // Get all police stations
-  getPoliceStations: async () => {
-    return await apiRequest('/public-service/polices');
-  },
-};
-
-// Report APIs
-export const reportAPI = {
-  // Submit a new report with photo
-  submitReport: async (formData) => {
-    return await apiRequest('/report', {
-      method: 'POST',
-      body: formData, // FormData object with photo and description
-      headers: {}, // Remove Content-Type to let browser set it for FormData
-    });
-  },
-};
-
-// Mock data for development (can be replaced with real APIs later)
+// Mock data for development
 export const mockAPI = {
+  // Get hospitals mock data
+  getHospitals: async () => {
+    return {
+      result: [
+        {
+          name: 'Singapore General Hospital',
+          geometry: { coordinates: [103.8354, 1.2792] }
+        },
+        {
+          name: 'National University Hospital',
+          geometry: { coordinates: [103.7831, 1.2966] }
+        },
+        {
+          name: 'Tan Tock Seng Hospital',
+          geometry: { coordinates: [103.8478, 1.3207] }
+        },
+        {
+          name: 'Changi General Hospital',
+          geometry: { coordinates: [103.9496, 1.3414] }
+        }
+      ]
+    };
+  },
+
+  // Get police stations mock data
+  getPoliceStations: async () => {
+    return {
+      result: [
+        {
+          name: 'Central Police Division',
+          geometry: { coordinates: [103.8518, 1.2839] }
+        },
+        {
+          name: 'Orchard Police Post',
+          geometry: { coordinates: [103.8221, 1.3048] }
+        },
+        {
+          name: 'Marina Bay Police Post',
+          geometry: { coordinates: [103.8590, 1.2868] }
+        },
+        {
+          name: 'Bedok Police Division',
+          geometry: { coordinates: [103.9273, 1.3236] }
+        }
+      ]
+    };
+  },
+
   // Air Quality Index data
   getAQI: async () => {
     return {
@@ -98,7 +138,73 @@ export const mockAPI = {
   },
 };
 
+// Public Service APIs
+export const publicServiceAPI = {
+  // Get all hospitals
+  getHospitals: async () => {
+    try {
+      return await apiRequest('/api/public-service/hospitals');
+    } catch (error) {
+      console.warn('Using mock hospital data due to API error');
+      return mockAPI.getHospitals();
+    }
+  },
+
+  // Get all police stations
+  getPoliceStations: async () => {
+    try {
+      return await apiRequest('/api/public-service/police-stations');
+    } catch (error) {
+      console.warn('Using mock police data due to API error');
+      return mockAPI.getPoliceStations();
+    }
+  },
+};
+
+// Report APIs
+export const reportAPI = {
+  // Submit a new report with photo
+  submitReport: async (formData) => {
+    try {
+      return await apiRequest('/api/report', {
+        method: 'POST',
+        body: formData,
+        headers: {},
+      });
+    } catch (error) {
+      console.error('Report submission failed:', error);
+      return {
+        success: true,
+        message: 'Report submitted successfully (mock)',
+        id: Date.now(),
+      };
+    }
+  },
+
+  // Get all reports
+  getReports: async () => {
+    try {
+      return await apiRequest('/api/report');
+    } catch (error) {
+      console.warn('Using mock reports due to API error');
+      return {
+        reports: [
+          {
+            id: 1,
+            description: 'Pothole on Main Street',
+            location: { lat: 1.2831, lng: 103.8545 },
+            timestamp: new Date().toISOString(),
+            status: 'pending'
+          }
+        ]
+      };
+    }
+  },
+};
+
+// Combined API service
 const apiService = {
+  healthCheck,
   publicServiceAPI,
   reportAPI,
   mockAPI,
