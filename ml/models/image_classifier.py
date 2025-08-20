@@ -1,6 +1,9 @@
 from ultralytics import YOLO
 import os
 import shutil
+import base64
+from PIL import Image
+import io
 
 MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'runs', 'detect', 'urban_issues_detector', 'weights', 'best.pt')
 yolo_model = YOLO(MODEL_PATH)
@@ -17,20 +20,18 @@ CLASSES = {
     8: 'Potholes and RoadCracks'
 }
 
-def classify_report(file, description):
-    temp_dir = "temp_images"
-    os.makedirs(temp_dir, exist_ok=True)
-    temp_file_path = os.path.join(temp_dir, file.filename)
-    file.save(temp_file_path)
+def classify_report(image_data, description, is_base64=False):
+    if is_base64:
+        # Mendekode string Base64
+        image_bytes = base64.b64decode(image_data)
+        img = Image.open(io.BytesIO(image_bytes))
+    else:
+        # Membaca file gambar
+        img = Image.open(image_data.stream)
 
-
-    results = yolo_model.predict(temp_file_path)
+    # Jalankan prediksi dengan YOLO
+    results = yolo_model.predict(img)
     
-
-    shutil.rmtree(temp_dir)
-
-
-    detections = []
     if results and results[0].boxes:
         top_detection = results[0].boxes[0]
         class_id = int(top_detection.cls[0])
