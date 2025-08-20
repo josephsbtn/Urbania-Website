@@ -15,7 +15,7 @@ const hospitalSchema = new mongoose.Schema({
   },
   geometry: {
     type: {
-      type: Stirng,
+      type: String,
       enum: ["Point"],
     },
     coordinates: {

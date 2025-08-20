@@ -62,7 +62,7 @@ const deleteReport = async (id) => {
 
 const getReport = async (id) => {
   try {
-    const chached = JSON.stringify(await Redis.get("report"));
+    const chached = await Redis.get("report");
     if (chached) {
       const result = chached.filter((item) => item.id !== id);
       return result;

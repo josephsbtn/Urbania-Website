@@ -1,4 +1,4 @@
-const redisLib = require("redis");
+const redisLib = require("ioredis");
 
 class Redis {
   constructor() {
