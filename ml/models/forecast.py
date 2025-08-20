@@ -23,9 +23,9 @@ def forecast_electricity():
     
     return {
         "electricity_forecast": {
-            "30_menit": round(avg_forecast_30min, 2),
-            "1_jam": round(avg_forecast_1hr, 2),
-            "3_jam": round(avg_forecast_3hr, 2)
+            "menit30": round(avg_forecast_30min, 2),
+            "jam1": round(avg_forecast_1hr, 2),
+            "jam3": round(avg_forecast_3hr, 2)
         }
     }
 
@@ -33,7 +33,7 @@ def forecast_water():
     forecast_results = water_model.forecast(steps=3)
     return {
         "water_forecast": {
-            "1_year_ahead": round(forecast_results.iloc[0], 2),
-            "3_years_ahead": round(forecast_results.iloc[2], 2),
+            "year1": round(forecast_results.iloc[0], 2),
+            "year3": round(forecast_results.iloc[2], 2),
         }
     }
