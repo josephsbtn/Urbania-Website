@@ -1,0 +1,10 @@
+# Ignore Python environment folders
+venv/
+venv_py312/
+__pycache__/
+
+# Ignore the entire data directory
+data/
+
+# Do NOT ignore model files
+# The saved_models and runs directories will be committed
