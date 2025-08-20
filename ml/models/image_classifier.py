@@ -2,7 +2,6 @@ from ultralytics import YOLO
 import os
 import shutil
 
-# Muat model YOLOv8 yang sudah dilatih
 MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'runs', 'detect', 'urban_issues_detector', 'weights', 'best.pt')
 yolo_model = YOLO(MODEL_PATH)
 
@@ -19,19 +18,18 @@ CLASSES = {
 }
 
 def classify_report(file, description):
-    # Simpan file sementara
     temp_dir = "temp_images"
     os.makedirs(temp_dir, exist_ok=True)
     temp_file_path = os.path.join(temp_dir, file.filename)
     file.save(temp_file_path)
 
-    # Jalankan prediksi dengan YOLO
+
     results = yolo_model.predict(temp_file_path)
     
-    # Hapus file sementara
+
     shutil.rmtree(temp_dir)
 
-    # Proses hasil
+
     detections = []
     if results and results[0].boxes:
         top_detection = results[0].boxes[0]
