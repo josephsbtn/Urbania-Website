@@ -41,6 +41,20 @@ const heatmapLayer = {
 
 export default function MapSection() {
   const mapRef = useRef();
+  const [marker, setMarker] = React.useState({
+    longitude: 103.8545,
+    latitude: 1.2831,
+  });
+
+  const handleMapClick = (event) => {
+    if (event.lngLat && event.lngLat.lng !== undefined && event.lngLat.lat !== undefined) {
+      setMarker({ 
+        longitude: event.lngLat.lng, 
+        latitude: event.lngLat.lat 
+      });
+    }
+  };
+
   return (
     <div style={{ position: "relative", width: "100%", height: "400px", borderRadius: "16px", boxShadow: "0 2px 8px #ccc" }}>
       <Map
@@ -54,25 +68,19 @@ export default function MapSection() {
         mapStyle="mapbox://styles/mapbox/streets-v11"
         style={{ width: "100%", height: "100%" }}
         attributionControl={false}
+        onClick={handleMapClick}
       >
         {/* Heatmap Layer */}
         <Source id="heatmap" type="geojson" data={heatmapData}>
           <Layer {...heatmapLayer} />
         </Source>
+        {/* Marker based on click location */}
+        <Marker longitude={marker.longitude} latitude={marker.latitude} anchor="bottom">
+          <svg height="32" viewBox="0 0 24 24" style={{ display: 'block' }}>
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#e74c3c"/>
+          </svg>
+        </Marker>
       </Map>
-      {/* Fixed Center Marker Overlay */}
-      <div style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -100%)",
-        pointerEvents: "none",
-        zIndex: 10
-      }}>
-        <svg height="32" viewBox="0 0 24 24" style={{ display: 'block' }}>
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#e74c3c"/>
-        </svg>
-      </div>
       {/* Singapore Label with Marker */}
       <div style={{
         position: "absolute",
