@@ -1,4 +1,5 @@
 const axios = require("axios");
+const HistorySolarPredict = require("../model/historySolarPredict.js");
 
 const predictSolarPanel = async (lon, lat) => {
   try {
@@ -13,21 +14,27 @@ const predictSolarPanel = async (lon, lat) => {
         }
       )
     ).data;
-    return {
-      estimated: result.estimated_generation_kWh_per_year,
+
+    const currentDate = new Date.now();
+
+    const formattedResult = result.map((item) => ({
+      estimated: item.estimated_generation_kWh_per_year,
       geometry: {
         type: "Point",
-        coordinates: [lon, lat],
+        coordinates: [item.lon, item.lat],
       },
-      roofArea: result.roof_area_m2,
-    };
+      roofArea: item.roof_area_m2,
+    }));
+
+    await HistorySolarPredict.create({ date: currentDate, ...formattedResult });
+    return formattedResult;
   } catch (error) {
     console.error(error);
     return error;
   }
 };
 
-const forecasting = async (lon, lat) => {
+const forecasting = async () => {
   try {
     const [water, elec] = await Promise.all([
       (await axios.get(`http://127.0.0.1:5000/forecast/water`)).data,
@@ -35,8 +42,16 @@ const forecasting = async (lon, lat) => {
     ]);
 
     return {
-      water: water.data,
-      elec: elec.data,
+      water: {
+        menit30: water.menit30,
+        jam1: water.jam1,
+        jam3: water.jam3,
+      },
+      elec: {
+        menit30: elec.electricity_forecast.menit30,
+        jam1: elec.electricity_forecast.jam1,
+        jam3: elec.electricity_forecast.jam3,
+      },
     };
   } catch (error) {
     console.error(error);
@@ -44,4 +59,4 @@ const forecasting = async (lon, lat) => {
   }
 };
 
-module.exports = { predictSolarPanel };
+module.exports = { predictSolarPanel, forecasting };

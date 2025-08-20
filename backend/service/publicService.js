@@ -53,12 +53,13 @@ const getAllPark = async () => {
 
 const getAllFireStation = async () => {
   try {
-    const chached = await Redis.get("park");
+    const chached = await Redis.get("fire");
     if (chached) {
-      return chached;
+      return JSON.parse(chached);
     }
-    const result = await FireStation.find({});
-    await Redis.set("park", result);
+
+    const result = await FireStation.find();
+    await Redis.set("fire", JSON.stringify(result));
     return result;
   } catch (error) {
     console.error(error);
@@ -67,109 +68,123 @@ const getAllFireStation = async () => {
 };
 
 const calcCoveragePerFacility = async (category) => {
-  let facilities;
-  if (category === "Health") {
-    facilities = await Hospital.find({});
-  }
-  if (condition === "Police") {
-    facilities = await Police.find({});
-  }
-  if (condition === "Park") {
-    facilities = await Park.find({});
-  }
-  if (condition === "Fire") {
-    facilities = await FireStation.find({});
-  }
-
-  for (const f of facilities) {
-    const covered = await Population.aggregate([
-      {
-        $geoNear: {
-          near: f.loc,
-          distanceField: "dist",
-          maxDistance: f.radius * 1000,
-          spherical: true,
+  try {
+    let facilities;
+    if (category === "Health") {
+      facilities = await Hospital.find({});
+    }
+    if (category === "Police") {
+      facilities = await Police.find({});
+    }
+    if (category === "Park") {
+      facilities = await Park.find({});
+    }
+    if (category === "Fire") {
+      facilities = await FireStation.find({});
+    }
+    for (const f of facilities) {
+      const covered = await Population.aggregate([
+        {
+          $geoNear: {
+            near: f.geometry,
+            distanceField: "dist",
+            maxDistance: f.radius * 1000,
+            spherical: true,
+          },
         },
-      },
-      { $group: { _id: null, total: { $sum: "$population" } } },
-    ]);
+        { $group: { _id: null, total: { $sum: "$population" } } },
+      ]);
 
-    results.push({
-      facility_id: f._id,
-      name: f.name,
-      category: f.category,
-      radius_km: f.radius_km,
-      covered_population: covered[0]?.total.round() || 0,
-    });
-  }
-
-  if (category === "Health") {
-    await Hospital.findByIdAndUpdate(r.facility_id, {
-      covered_population: r.covered_population,
-    });
-  }
-  if (condition === "Police") {
-    await Police.findByIdAndUpdate(r.facility_id, {
-      covered_population: r.covered_population,
-    });
-  }
-  if (condition === "Park") {
-    await Park.findByIdAndUpdate(r.facility_id, {
-      covered_population: r.covered_population,
-    });
-  }
-  if (condition === "Fire") {
-    await FireStation.findByIdAndUpdate(r.facility_id, {
-      covered_population: r.covered_population,
-    });
+      if (category === "Health") {
+        await Hospital.findByIdAndUpdate(f._id, {
+          covered_population: covered[0] || 0,
+        });
+      }
+      if (category === "Police") {
+        console.log(f._id, covered[0]?.total.round());
+        await Police.findByIdAndUpdate(f._id, {
+          covered_population: covered[0]?.total.round() || 0,
+        });
+      }
+      if (category === "Park") {
+        await Park.findByIdAndUpdate(f._id, {
+          covered_population: covered[0]?.total.round() || 0,
+        });
+      }
+      if (category === "Fire") {
+        await FireStation.findByIdAndUpdate(f._id, {
+          covered_population: covered[0]?.total.round() || 0,
+        });
+      }
+    }
+  } catch (error) {
+    console.error(error);
+    return error;
   }
 };
 
 const calcCoverageUnion = async (category) => {
-  let facilities;
-  if (category === "Health") {
-    facilities = await Hospital.find({});
-  }
-  if (condition === "Police") {
-    facilities = await Police.find({});
-  }
-  if (condition === "Park") {
-    facilities = await Park.find({});
-  }
-  if (condition === "Fire") {
-    facilities = await FireStation.find({});
-  }
+  try {
+    let facilities = [];
 
-  await Population.updateMany({}, { $set: { [`covered_${category}`]: false } });
+    // Bagian ini sudah benar untuk mengambil data fasilitas
+    if (category === "Health") {
+      facilities = await Hospital.find({});
+    }
+    if (category === "Police") {
+      facilities = await Police.find({});
+    }
+    if (category === "Park") {
+      facilities = await Park.find({});
+    }
+    if (category === "Fire") {
+      facilities = await FireStation.find({});
+    }
 
-  for (const f of facilities) {
-    await Population.updateMany(
-      {
-        loc: {
-          $geoWithin: {
-            $centerSphere: [f.loc.coordinates, f.radius_km / 6371],
+    const fieldName = `Coverage${category}`;
+
+    await Population.updateMany({}, { $set: { [fieldName]: false } });
+
+    for (const f of facilities) {
+      await Population.updateMany(
+        {
+          geometry: {
+            $geoWithin: {
+              $centerSphere: [f.geometry.coordinates, f.radius / 6371],
+            },
           },
         },
-      },
-      { $set: { [`covered_${category}`]: true } }
+        { $set: { [fieldName]: true } }
+      );
+    }
+
+    const agg = await Population.aggregate([
+      { $match: { [fieldName]: true } },
+      { $group: { _id: null, total: { $sum: "$population" } } },
+    ]);
+
+    console.log(`Hasil agregasi untuk ${category}:`, agg);
+
+    return agg[0]?.total || 0;
+  } catch (error) {
+    console.error(
+      `Error di calcCoverageUnion untuk kategori ${category}:`,
+      error
     );
+    return 0;
   }
-
-  const agg = await Population.aggregate([
-    { $match: { [`covered_${category}`]: true } },
-    { $group: { _id: null, total: { $sum: "$population" } } },
-  ]);
-
-  return agg[0]?.total || 0;
 };
 const calcHappinessIndex = async () => {
   const totalPopAgg = await Population.aggregate([
     { $group: { _id: null, total: { $sum: "$population" } } },
   ]);
-  const totalPop = totalPopAgg[0].total;
-  const health = await calcCoverageUnion("health");
-  const police = await calcCoverageUnion("police");
-  const park = await calcCoverageUnion("park");
+  const totalPop = totalPopAgg[0]?.total;
+  const [health, police, park, fire] = await Promise.all([
+    calcCoverageUnion("Health"),
+    calcCoverageUnion("Police"),
+    calcCoverageUnion("Park"),
+    calcCoverageUnion("Fire"),
+  ]);
 
   const healthCoverage = (health / totalPop) * 100;
   const policeCoverage = (police / totalPop) * 100;
@@ -178,8 +193,17 @@ const calcHappinessIndex = async () => {
   const scoreHealth = healthCoverage / 100;
   const scorePolice = policeCoverage / 100;
   const scorePark = parkCoverage / 100;
+  const scoreDamkar = damkarCoverage / 100;
 
-  const HI = scoreHealth * 0.4 + scorePolice * 0.3 + scorePark * 0.3;
+  const HI =
+    scoreHealth * 0.3 + scorePolice * 0.3 + scorePark * 0.2 + scoreDamkar * 0.2;
+
+  console.log({
+    healthCoverage,
+    policeCoverage,
+    parkCoverage,
+    happinessIndex: HI * 100,
+  });
 
   return {
     healthCoverage,
@@ -193,6 +217,7 @@ module.exports = {
   getAllHostipals,
   getAllPolice,
   getAllPark,
+  getAllFireStation,
   calcCoveragePerFacility,
   calcCoverageUnion,
   calcHappinessIndex,

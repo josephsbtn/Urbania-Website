@@ -1,19 +1,28 @@
 const mongoose = require("mongoose");
 
-const parkSchema = new mongoose.Schema({
-  name: {
-    type: String,
-  },
-  location: {
-    type: {
+const parkSchema = new mongoose.Schema(
+  {
+    name: {
       type: String,
-      enum: ["Point"],
     },
-    coordinates: {
-      type: [Number],
+    geometry: {
+      type: {
+        type: String,
+        enum: ["Point"],
+      },
+      coordinates: {
+        type: [Number],
+      },
+    },
+    radius: {
+      type: Number,
+    },
+    coverage_population: {
+      type: Number,
     },
   },
-});
-
-const model = mongoose.model("Park", parkSchema);
+  { collection: "park" }
+);
+parkSchema.index({ geometry: "2dsphere" });
+const model = mongoose.model("park", parkSchema);
 module.exports = model;

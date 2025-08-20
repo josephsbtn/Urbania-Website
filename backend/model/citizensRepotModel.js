@@ -12,6 +12,6 @@ const reportSchema = new mongoose.Schema({
   },
 });
 
-const model = mongoose.model("CitizensReport", reportSchema);
+const model = mongoose.model("Citizen-Reports", reportSchema);
 
 module.exports = model;
