@@ -15,6 +15,7 @@ export default function ReportList() {
 
       const response = await axios.get(`http://127.0.0.1:8000/report/`);
       console.log("Report API Response:", response.data);
+
       setReportData(response.data.result);
     } catch (error) {
       console.error("Error fetching report data:", error);
@@ -32,20 +33,22 @@ export default function ReportList() {
       <h1 className="font-bold text-xl">Newest Citizen Report ❗</h1>
       {isLoading ? (
         <p>Loading...</p>
-      ) : reportData ? (
+      ) : reportData && reportData.length > 0 ? (
         <div className="min-h-40 overflow-y-scroll p-2 w-full">
           {reportData.map((report) => (
-            <div className="flex flex-col items-start justify-start p-2 min-h-30">
-            <img
-              src={`${reportData.image}`}
-              alt={reportData.image}
-            />
-            <p>{reportData.description}</p>
-          </div>
+            <div
+              className="flex flex-col items-start justify-start p-2 min-h-30"
+              key={report.id || report.image}>
+              <img
+                src={`../../../backend/${report.image}`}
+                alt={report.image}
+              />
+              <p>{report.description}</p>
+            </div>
           ))}
-          
         </div>
-
+      ) : error ? (
+        <p>{error}</p>
       ) : (
         <div className="flex flex-col items-start justify-start p-2">
           <h1>No Data Report</h1>
