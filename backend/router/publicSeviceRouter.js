@@ -53,4 +53,13 @@ router.get("/happiness", async (req, res) => {
   }
 });
 
+router.get("/weather", async (req, res) => {
+  try {
+    const [weather, aqi] = await Promise.all([getWeather(), getAQI()]);
+    return res.status(200).json({ weather, aqi });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

@@ -5,7 +5,7 @@ const Park = require("../model/parkModel.js");
 const FireStation = require("../model/fireStationModel.js");
 
 const Redis = require("../config/redis.js");
-
+const axios = require("axios");
 const getAllHostipals = async () => {
   try {
     const chached = await Redis.get("hospitals");
@@ -214,6 +214,38 @@ const calcHappinessIndex = async () => {
   };
 };
 
+const getAQI = async () => {
+  try {
+    const result = (
+      await axios.get(`https://api.waqi.info/feed/geo:${1.3521};${103.8198}/?token="9883ecf1e24192cf9e66f368d1ec6350c55e2be1"
+`)
+    ).data;
+    return { aqi: result.data.aqi };
+  } catch (error) {
+    console.log("Failed to get AQI");
+    return Error("Failed to get AQI");
+  }
+};
+
+const getWeather = async () => {
+  try {
+    const result = (
+      await axios.get(
+        `https://api.openweathermap.org/data/3.0/onecall?lat=1.3521&lon=103.8198&appid="8a2989e0165147dd6ff08920365dde85"`
+      )
+    ).data;
+    return {
+      temperature: result.current.temp,
+      humidity: result.current.humidity,
+      windSpeed: result.current.wind_speed,
+      uvIndex: result.current.uvi,
+    };
+  } catch (error) {
+    console.log("Failed to get weather");
+    return Error("Failed to get weather");
+  }
+};
+
 module.exports = {
   getAllHostipals,
   getAllPolice,
@@ -222,4 +254,6 @@ module.exports = {
   calcCoveragePerFacility,
   calcCoverageUnion,
   calcHappinessIndex,
+  getAQI,
+  getWeather,
 };
