@@ -18,24 +18,27 @@ const getAllReports = async () => {
   }
 };
 
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" }); // simpan ke folder uploads
-
-app.post("/report", upload.single("photo"), async (req, res) => {
+const uploadReport = async (photo, description) => {
   try {
     const { description } = req.body;
     const photoPath = req.file.path;
 
-    // convert ke base64
     const imageBuffer = fs.readFileSync(photoPath);
     const base64Image = imageBuffer.toString("base64");
 
-    // kirim ke ML service
     const getLabel = (
-      await axios.post("http://127.0.0.1:5000/label", {
-        image: base64Image,
-        description,
-      })
+      await axios.post(
+        "http://127.0.0.1:5000/classify",
+        {
+          image_base64: base64Image,
+          description: description,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
     ).data;
 
     // simpan ke MongoDB
@@ -50,7 +53,7 @@ app.post("/report", upload.single("photo"), async (req, res) => {
     console.error(error);
     res.status(500).json({ success: false, error: error.message });
   }
-});
+};
 
 const deleteReport = async (id) => {
   try {
