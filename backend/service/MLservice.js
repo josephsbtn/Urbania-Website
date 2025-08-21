@@ -43,8 +43,8 @@ const forecasting = async () => {
 
     return {
       water: {
-        year1: water.year1,
-        year3: water.year3,
+        year1: water.water_forecasting.year1,
+        year3: water.water_forecasting.year3,
       },
       elec: {
         menit30: elec.electricity_forecast.menit30,
