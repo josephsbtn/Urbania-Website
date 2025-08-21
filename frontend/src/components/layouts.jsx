@@ -13,7 +13,7 @@ export default function Layout({ children }) {
             <img 
               src="/Logo-Techno-Art-2025.png" 
               alt="TechnoArt 2025" 
-              className="h-20 w-auto object-contain"
+              className="h-10 w-auto object-contain"
               onError={(e) => {
                 console.log('Image failed to load:', e.target.src);
                 e.target.style.display = 'none';
@@ -56,42 +56,6 @@ export default function Layout({ children }) {
       )}
 
       <main className="flex-1 p-6">{children}</main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-auto">
-        <div className="p-6">
-          <div className="flex items-center justify-between text-sm text-gray-500">
-            <div className="flex items-center gap-3">
-              {/* TechnoArt 2025 Logo in Footer */}
-              <div className="flex items-center gap-1">
-                <img 
-                  src="/Logo-Techno-Art-2025.png" 
-                  alt="TechnoArt 2025" 
-                  className="h-5 w-auto object-contain"
-                  onError={(e) => {
-                    console.log('Footer image failed to load:', e.target.src);
-                    e.target.style.display = 'none';
-                    e.target.nextElementSibling.style.display = 'flex';
-                  }}
-                />
-                {/* Fallback CSS Logo */}
-                <div className="hidden items-center gap-1">
-                  <div className="relative">
-                    <div className="bg-gradient-to-r from-blue-500 to-orange-400 text-white px-1.5 py-0.5 rounded text-xs font-bold tracking-wide">
-                      <span className="text-orange-200">TECHNO</span><span className="text-blue-100">ART</span>
-                    </div>
-                    <div className="absolute -top-0.5 -right-0.5 bg-orange-400 text-white text-[10px] px-1 py-0 rounded-full font-bold">
-                      2025
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <span>© 2025 Urbania Smart City Platform</span>
-            </div>
-            <div>Powered by TechnoArt 2025</div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

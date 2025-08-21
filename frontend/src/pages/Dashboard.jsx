@@ -90,20 +90,10 @@ export default function Dashboard() {
 
             <div>
               <h1 className="text-3xl font-bold text-gray-900">
-                Urbania Dashboard
+                DASHBOARD
               </h1>
               <p className="text-gray-600 mt-1">Smart City Management Platform</p>
             </div>
-          </div>
-
-          {/* Connection Status Indicator */}
-          <div
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${getConnectionColor()}`}>
-            {getConnectionIcon()}
-            <span className="text-sm font-medium">{getConnectionText()}</span>
-            <span className="text-xs opacity-70">
-              Last: {lastChecked.toLocaleTimeString()}
-            </span>
           </div>
         </div>
       </div>
@@ -185,9 +175,9 @@ export default function Dashboard() {
                 className="h-6 w-auto object-contain"
               />
             </div>
-            <span>© 2025 Urbania Smart City Platform</span>
+            <span>© 2025 Urbania Smart and Sustainable, Together</span>
           </div>
-          <div>Version 1.0.0 | Made with ❤️ for Singapore</div>
+          <div>Version 1 | Powered by CodeIn 2025</div>
         </div>
       </div>
     </div>
