@@ -57,45 +57,32 @@ export default function MapSection() {
       .hospital-marker:hover > div:nth-child(2) {
         transform: scale(1.1) !important;
       }
-      
       .police-marker:hover > div:nth-child(2) {
         transform: scale(1.1) !important;
       }
-      
       .park-marker:hover > div:nth-child(2) {
         transform: scale(1.1) !important;
       }
-      
       .fire-marker:hover > div:nth-child(2) {
         transform: scale(1.1) !important;
       }
-      
       .hospital-marker:hover .hospital-label {
         opacity: 1 !important;
       }
-      
       .police-marker:hover .police-label {
         opacity: 1 !important;
       }
-      
       .park-marker:hover .park-label {
         opacity: 1 !important;
       }
-      
       .fire-marker:hover .fire-label {
         opacity: 1 !important;
       }
-      
       .clicked-marker:hover .marker-tooltip {
         opacity: 1 !important;
       }
-      
-      .clicked-marker:hover > div:nth-child(2) {
-        transform: scale(1.1) rotate(-45deg) !important;
-      }
     `;
     document.head.appendChild(style);
-    
     return () => {
       if (document.head.contains(style)) {
         document.head.removeChild(style);
@@ -103,109 +90,55 @@ export default function MapSection() {
     };
   }, []);
 
-  const mapRef = useRef();
-  const [marker, setMarker] = useState(null); // Start with no marker
+  // State and refs
+  const mapRef = useRef(null);
+  const [marker, setMarker] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [hospitals, setHospitals] = useState([]);
   const [policeStations, setPoliceStations] = useState([]);
   const [parks, setParks] = useState([]);
   const [fireStations, setFireStations] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  // Load public service data
+  // Fetch public services data
   useEffect(() => {
-    const loadPublicServiceData = async () => {
-      try {
-        setLoading(true);
-        
-        // Load hospitals, police stations, parks, and fire stations
-        const [hospitalsData, policeData, parksData, fireData] = await Promise.all([
-          publicServiceAPI.getHospitals(),
-          publicServiceAPI.getPoliceStations(),
-          publicServiceAPI.getParks(),
-          publicServiceAPI.getFireStations(),
-        ]);
-
-        setHospitals(hospitalsData.result || []);
-        setPoliceStations(policeData.result || []);
-        setParks(parksData.result || []);
-        setFireStations(fireData.result || []);
-      } catch (error) {
-        console.error('Error loading public service data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadPublicServiceData();
+    setLoading(true);
+    publicServiceAPI.getAll()
+      .then((data) => {
+        setHospitals(data.hospitals || []);
+        setPoliceStations(data.policeStations || []);
+        setParks(data.parks || []);
+        setFireStations(data.fireStations || []);
+      })
+      .catch(() => {
+        setHospitals([]);
+        setPoliceStations([]);
+        setParks([]);
+        setFireStations([]);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
-  const handleMapClick = (event) => {
-    console.log("Map clicked!", event);
-    
-    try {
-      let lng, lat;
-
-      // Handle different event structures
-      if (event.lngLat) {
-        lng = event.lngLat.lng;
-        lat = event.lngLat.lat;
-      }
-
-      console.log("Coordinates:", lng, lat);
-
-      // Validate coordinates and check if they're within Singapore bounds
-      if (
-        typeof lng === "number" &&
-        typeof lat === "number" &&
-        !isNaN(lng) &&
-        !isNaN(lat) &&
-        lng >= 103.6 &&
-        lng <= 104.1 &&
-        lat >= 1.15 &&
-        lat <= 1.48
-      ) {
-        setMarker({ longitude: lng, latitude: lat });
-        console.log("Marker placed at:", lng, lat);
-        
-        // Add a small vibration effect if supported
-        if (navigator.vibrate) {
-          navigator.vibrate(50);
-        }
-      } else {
-        console.log("Click outside Singapore bounds or invalid coordinates:", lng, lat);
-      }
-    } catch (error) {
-      console.error("Error handling map click:", error);
+  // Map click handler
+  const handleMapClick = (e) => {
+    if (e && e.lngLat) {
+      setMarker({
+        longitude: e.lngLat.lng,
+        latitude: e.lngLat.lat,
+      });
     }
   };
 
   return (
-    <>
-      <style>
-        {`
-          @keyframes bounce {
-            0% { transform: translateY(-20px) scale(0.8); opacity: 0; }
-            50% { transform: translateY(-10px) scale(1.1); }
-            100% { transform: translateY(0) scale(1); opacity: 1; }
-          }
-          
-          @keyframes pulse {
-            0% { transform: rotate(-45deg) scale(1); opacity: 0.6; }
-            50% { transform: rotate(-45deg) scale(1.2); opacity: 0.3; }
-            100% { transform: rotate(-45deg) scale(1.4); opacity: 0; }
-          }
-        `}
-      </style>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "400px",
-          borderRadius: "16px",
-          boxShadow: "0 2px 8px #ccc",
-          overflow: "hidden",
-        }}
-      >
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "400px",
+        borderRadius: "16px",
+        boxShadow: "0 2px 8px #ccc",
+        overflow: "hidden",
+      }}
+    >
       <Map
         ref={mapRef}
         initialViewState={{
@@ -657,6 +590,5 @@ export default function MapSection() {
         </div>
       )}
     </div>
-    </>
   );
 }
