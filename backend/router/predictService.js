@@ -20,3 +20,5 @@ router.get("/solar/:lon/:lat", async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 });
+
+module.exports = router;

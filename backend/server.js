@@ -8,6 +8,7 @@ const { dbconnect } = require("./config/database");
 
 const reportRouter = require("./router/reportRouter");
 const publicServiceRouter = require("./router/publicSeviceRouter");
+const predictRouter = require("./router/predictService");
 const { calcHappinessIndex } = require("./service/publicService");
 
 app.use(express.json());
@@ -19,7 +20,7 @@ dbconnect()
     app.listen(8000, () => {
       console.log("Server is running on port 8000");
     });
-    calcHappinessIndex(); 
+    calcHappinessIndex();
     app.use("/report", express.static("uploads"), reportRouter);
     app.use("/public-service", publicServiceRouter);
   })
