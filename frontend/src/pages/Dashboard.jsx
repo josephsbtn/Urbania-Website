@@ -77,11 +77,23 @@ export default function Dashboard() {
       {/* Header with connection status */}
       <div className="mb-6">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">
-              Urbania Dashboard
-            </h1>
-            <p className="text-gray-600 mt-1">Smart City Management Platform</p>
+          <div className="flex items-center gap-4">
+            {/* Urbania Logo */}
+            <div className="flex items-center gap-2">
+              <img 
+                src="/urbania.svg" 
+                alt="Urbania" 
+                className="h-12 w-auto object-contain"
+              />
+            </div>
+            <div className="border-l border-gray-300 h-12"></div>
+
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Urbania Dashboard
+              </h1>
+              <p className="text-gray-600 mt-1">Smart City Management Platform</p>
+            </div>
           </div>
 
           {/* Connection Status Indicator */}
@@ -164,7 +176,17 @@ export default function Dashboard() {
       {/* Footer */}
       <div className="mt-8 pt-6 border-t border-gray-200">
         <div className="flex items-center justify-between text-sm text-gray-500">
-          <div>© 2025 Urbania Smart City Platform</div>
+          <div className="flex items-center gap-3">
+            {/* Urbania Logo in Footer */}
+            <div className="flex items-center gap-1">
+              <img 
+                src="/urbania.svg" 
+                alt="Urbania" 
+                className="h-6 w-auto object-contain"
+              />
+            </div>
+            <span>© 2025 Urbania Smart City Platform</span>
+          </div>
           <div>Version 1.0.0 | Made with ❤️ for Singapore</div>
         </div>
       </div>

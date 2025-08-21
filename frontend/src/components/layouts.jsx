@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 
 export default function Layout({ children }) {
   const [open, setOpen] = useState(false);
@@ -6,23 +7,41 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen bg-blue-50 flex flex-col">
       <header className="bg-white shadow-md p-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <h1 className="font-bold text-xl">Smart City Dashboard</h1>
+        {/* TechnoArt 2025 Logo */}
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <img 
+              src="/Logo-Techno-Art-2025.png" 
+              alt="TechnoArt 2025" 
+              className="h-20 w-auto object-contain"
+              onError={(e) => {
+                console.log('Image failed to load:', e.target.src);
+                e.target.style.display = 'none';
+                e.target.nextElementSibling.style.display = 'flex';
+              }}
+            />
+            {/* Fallback CSS Logo */}
+            <div className="hidden items-center gap-1">
+              <div className="relative">
+                <div className="bg-gradient-to-r from-blue-600 to-orange-400 text-white px-2 py-1 rounded font-bold text-sm tracking-wide">
+                  <span className="text-orange-200">TECHNO</span><span className="text-blue-100">ART</span>
+                </div>
+                <div className="absolute -top-0.5 -right-0.5 bg-orange-400 text-white text-xs px-1 py-0 rounded-full font-bold">
+                  2025
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="border-l border-gray-300 h-8"></div>
         </div>
-
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <button className="text-sm">Future Mobility</button>
-          <button className="text-sm">Smart Governance</button>
-          <button className="text-sm">Green Cities</button>
-        </nav>
 
         {/* Mobile menu button */}
-        <div className="md:hidden">
-          <button onClick={() => setOpen(!open)} className="p-2 bg-gray-100 rounded">
-            {open ? 'Close' : 'Menu'}
-          </button>
-        </div>
+        <button 
+          className="md:hidden p-2"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </header>
 
       {/* Mobile nav panel */}
@@ -37,6 +56,42 @@ export default function Layout({ children }) {
       )}
 
       <main className="flex-1 p-6">{children}</main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 mt-auto">
+        <div className="p-6">
+          <div className="flex items-center justify-between text-sm text-gray-500">
+            <div className="flex items-center gap-3">
+              {/* TechnoArt 2025 Logo in Footer */}
+              <div className="flex items-center gap-1">
+                <img 
+                  src="/Logo-Techno-Art-2025.png" 
+                  alt="TechnoArt 2025" 
+                  className="h-5 w-auto object-contain"
+                  onError={(e) => {
+                    console.log('Footer image failed to load:', e.target.src);
+                    e.target.style.display = 'none';
+                    e.target.nextElementSibling.style.display = 'flex';
+                  }}
+                />
+                {/* Fallback CSS Logo */}
+                <div className="hidden items-center gap-1">
+                  <div className="relative">
+                    <div className="bg-gradient-to-r from-blue-500 to-orange-400 text-white px-1.5 py-0.5 rounded text-xs font-bold tracking-wide">
+                      <span className="text-orange-200">TECHNO</span><span className="text-blue-100">ART</span>
+                    </div>
+                    <div className="absolute -top-0.5 -right-0.5 bg-orange-400 text-white text-[10px] px-1 py-0 rounded-full font-bold">
+                      2025
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span>© 2025 Urbania Smart City Platform</span>
+            </div>
+            <div>Powered by TechnoArt 2025</div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
