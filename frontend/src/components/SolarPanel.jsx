@@ -18,7 +18,7 @@ export default function SolarPanel() {
       const { lat, lon } = location;
 
       const response = await axios.get(
-        `http://127.0.0.1:5000/predict/solar/${lon}/${lat}`
+        `http://127.0.0.1:8000/predict/solar/${lon}/${lat}`
       );
 
       setSolarData(response.data.result);
