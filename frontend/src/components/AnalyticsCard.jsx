@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+} from "recharts";
 import { mockAPI } from "../services/api";
 
 export default function AnalyticsCard() {
   const [analyticsData, setAnalyticsData] = useState({
     reports: [],
-    categories: []
+    categories: [],
   });
   const [loading, setLoading] = useState(true);
-  const [viewType, setViewType] = useState('reports'); // 'reports' or 'categories'
+  const [viewType, setViewType] = useState("reports"); // 'reports' or 'categories'
 
   useEffect(() => {
     const loadAnalyticsData = async () => {
@@ -16,7 +25,7 @@ export default function AnalyticsCard() {
         const data = await mockAPI.getAnalyticsData();
         setAnalyticsData(data);
       } catch (error) {
-        console.error('Error loading analytics data:', error);
+        console.error("Error loading analytics data:", error);
       } finally {
         setLoading(false);
       }
@@ -31,23 +40,21 @@ export default function AnalyticsCard() {
         <h2 className="font-bold">Analytics Dashboard</h2>
         <div className="flex gap-2">
           <button
-            onClick={() => setViewType('reports')}
+            onClick={() => setViewType("reports")}
             className={`px-3 py-1 text-sm rounded ${
-              viewType === 'reports' 
-                ? 'bg-blue-500 text-white' 
-                : 'bg-gray-200 text-gray-700'
-            }`}
-          >
+              viewType === "reports"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}>
             Reports
           </button>
           <button
-            onClick={() => setViewType('categories')}
+            onClick={() => setViewType("categories")}
             className={`px-3 py-1 text-sm rounded ${
-              viewType === 'categories' 
-                ? 'bg-blue-500 text-white' 
-                : 'bg-gray-200 text-gray-700'
-            }`}
-          >
+              viewType === "categories"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            }`}>
             Categories
           </button>
         </div>
@@ -59,17 +66,17 @@ export default function AnalyticsCard() {
         </div>
       ) : (
         <ResponsiveContainer width="100%" height={200}>
-          {viewType === 'reports' ? (
+          {viewType === "reports" ? (
             <LineChart data={analyticsData.reports}>
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Line 
-                type="monotone" 
-                dataKey="value" 
-                stroke="#3b82f6" 
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#3b82f6"
                 strokeWidth={2}
-                dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
+                dot={{ fill: "#3b82f6", strokeWidth: 2, r: 4 }}
               />
             </LineChart>
           ) : (
@@ -82,12 +89,11 @@ export default function AnalyticsCard() {
           )}
         </ResponsiveContainer>
       )}
-      
+
       <div className="mt-3 text-sm text-gray-600">
-        {viewType === 'reports' 
-          ? 'Monthly report submissions trend' 
-          : 'Report distribution by category'
-        }
+        {viewType === "reports"
+          ? "Monthly report submissions trend"
+          : "Report distribution by category"}
       </div>
     </div>
   );

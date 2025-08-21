@@ -125,6 +125,9 @@ export const mockAPI = {
         await axios.get(`${API_BASE_URL}/public-service/fire`)
       ).data.result.length,
     ]);
+    const forecastingWater = await axios.get(
+      `${API_BASE_URL}/predict/forecast`
+    );
     return {
       reports: [
         { name: "", value: 12 },

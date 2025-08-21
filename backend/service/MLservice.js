@@ -6,7 +6,7 @@ const predictSolarPanel = async (lon, lat) => {
     const result = (
       await axios.post(
         "http://127.0.0.1:5000/solar",
-        { lon, lat },
+        { lon: lon, lat: lat },
         {
           headers: {
             "Content-Type": "application/json",
