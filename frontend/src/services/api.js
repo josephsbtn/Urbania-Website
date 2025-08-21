@@ -196,7 +196,7 @@ export const reportAPI = {
   // Get all reports
   getReports: async () => {
     try {
-      return await apiRequest("/api/report");
+      return await apiRequest("/report/");
     } catch (error) {
       console.warn("Using mock reports due to API error");
       return {
