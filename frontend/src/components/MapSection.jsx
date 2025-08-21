@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import Map, { Marker, Source, Layer, Popup } from "react-map-gl";
+import Map, { Marker, Source, Layer } from "react-map-gl";
 import { publicServiceAPI } from "../services/api";
 
 const MAPBOX_TOKEN =
@@ -62,6 +62,14 @@ export default function MapSection() {
         transform: scale(1.1) !important;
       }
       
+      .park-marker:hover > div:nth-child(2) {
+        transform: scale(1.1) !important;
+      }
+      
+      .fire-marker:hover > div:nth-child(2) {
+        transform: scale(1.1) !important;
+      }
+      
       .hospital-marker:hover .hospital-label {
         opacity: 1 !important;
       }
@@ -69,16 +77,21 @@ export default function MapSection() {
       .police-marker:hover .police-label {
         opacity: 1 !important;
       }
-
-      @keyframes slideDown {
-        from {
-          opacity: 0;
-          transform: translateX(-50%) translateY(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(-50%) translateY(0);
-        }
+      
+      .park-marker:hover .park-label {
+        opacity: 1 !important;
+      }
+      
+      .fire-marker:hover .fire-label {
+        opacity: 1 !important;
+      }
+      
+      .clicked-marker:hover .marker-tooltip {
+        opacity: 1 !important;
+      }
+      
+      .clicked-marker:hover > div:nth-child(2) {
+        transform: scale(1.1) rotate(-45deg) !important;
       }
     `;
     document.head.appendChild(style);
@@ -91,23 +104,12 @@ export default function MapSection() {
   }, []);
 
   const mapRef = useRef();
-  const [marker, setMarker] = useState({
-    longitude: 103.8545,
-    latitude: 1.2831,
-  });
+  const [marker, setMarker] = useState(null); // Start with no marker
   const [hospitals, setHospitals] = useState([]);
   const [policeStations, setPoliceStations] = useState([]);
+  const [parks, setParks] = useState([]);
+  const [fireStations, setFireStations] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  // Popup states
-  const [showPopup, setShowPopup] = useState(null);
-  const [popupInfo, setPopupInfo] = useState(null);
-  const [reportForm, setReportForm] = useState({
-    description: '',
-    photo: null,
-    location: null
-  });
-  const [notification, setNotification] = useState(null);
 
   // Load public service data
   useEffect(() => {
@@ -115,14 +117,18 @@ export default function MapSection() {
       try {
         setLoading(true);
         
-        // Load hospitals and police stations
-        const [hospitalsData, policeData] = await Promise.all([
+        // Load hospitals, police stations, parks, and fire stations
+        const [hospitalsData, policeData, parksData, fireData] = await Promise.all([
           publicServiceAPI.getHospitals(),
           publicServiceAPI.getPoliceStations(),
+          publicServiceAPI.getParks(),
+          publicServiceAPI.getFireStations(),
         ]);
 
         setHospitals(hospitalsData.result || []);
         setPoliceStations(policeData.result || []);
+        setParks(parksData.result || []);
+        setFireStations(fireData.result || []);
       } catch (error) {
         console.error('Error loading public service data:', error);
       } finally {
@@ -159,97 +165,17 @@ export default function MapSection() {
         lat <= 1.48
       ) {
         setMarker({ longitude: lng, latitude: lat });
-        
-        // Show report creation popup
-        setPopupInfo({
-          type: 'newReport',
-          longitude: lng,
-          latitude: lat,
-          title: 'Create New Report',
-          description: `Report issue at this location`
-        });
-        setShowPopup('newReport');
-        setReportForm({
-          description: '',
-          photo: null,
-          location: { lng, lat }
-        });
-        
         console.log("Marker placed at:", lng, lat);
+        
+        // Add a small vibration effect if supported
+        if (navigator.vibrate) {
+          navigator.vibrate(50);
+        }
       } else {
         console.log("Click outside Singapore bounds or invalid coordinates:", lng, lat);
       }
     } catch (error) {
       console.error("Error handling map click:", error);
-    }
-  };
-
-  // Handle hospital marker click
-  const handleHospitalClick = (hospital) => {
-    setPopupInfo({
-      type: 'hospital',
-      longitude: hospital.geometry.coordinates[0],
-      latitude: hospital.geometry.coordinates[1],
-      title: hospital.name || 'Hospital',
-      description: 'Healthcare facility providing medical services',
-      details: {
-        type: 'Hospital',
-        services: ['Emergency Care', 'Outpatient', 'Specialist Care'],
-        contact: '24/7 Emergency Services'
-      }
-    });
-    setShowPopup('hospital');
-  };
-
-  // Handle police station marker click
-  const handlePoliceClick = (police) => {
-    setPopupInfo({
-      type: 'police',
-      longitude: police.geometry.coordinates[0],
-      latitude: police.geometry.coordinates[1],
-      title: police.name || 'Police Station',
-      description: 'Law enforcement facility for public safety',
-      details: {
-        type: 'Police Station',
-        services: ['Emergency Response', 'Crime Reporting', 'Public Safety'],
-        contact: '999 for emergencies'
-      }
-    });
-    setShowPopup('police');
-  };
-
-  // Handle report form submission
-  const handleReportSubmit = async () => {
-    if (!reportForm.description.trim()) {
-      setNotification({ type: 'error', message: 'Please enter a description for your report' });
-      setTimeout(() => setNotification(null), 3000);
-      return;
-    }
-
-    try {
-      const formData = new FormData();
-      formData.append('description', reportForm.description);
-      formData.append('longitude', reportForm.location.lng);
-      formData.append('latitude', reportForm.location.lat);
-      if (reportForm.photo) {
-        formData.append('photo', reportForm.photo);
-      }
-
-      // Simulate API call (replace with actual API)
-      console.log('Submitting report:', reportForm);
-      
-      // Close popup and reset form
-      setShowPopup(null);
-      setPopupInfo(null);
-      setReportForm({ description: '', photo: null, location: null });
-      
-      // Show success notification
-      setNotification({ type: 'success', message: 'Report submitted successfully!' });
-      setTimeout(() => setNotification(null), 3000);
-    } catch (error) {
-      console.error('Error submitting report:', error);
-      setNotification({ type: 'error', message: 'Failed to submit report. Please try again.' });
-      setTimeout(() => setNotification(null), 3000);
     }
   };
 
@@ -292,85 +218,116 @@ export default function MapSection() {
         style={{ width: "100%", height: "100%" }}
         attributionControl={false}
         onClick={handleMapClick}
+        cursor="crosshair"
       >
         {/* Heatmap Layer */}
         <Source id="heatmap" type="geojson" data={heatmapData}>
           <Layer {...heatmapLayer} />
         </Source>
-        {/* Marker based on click location */}
-        <Marker
-          longitude={marker.longitude}
-          latitude={marker.latitude}
-          anchor="bottom"
-        >
-          <div style={{
-            position: 'relative',
-            cursor: 'pointer',
-            transform: 'translate(-50%, -100%)',
-          }}>
-            {/* Pin Shadow */}
-            <div style={{
-              position: 'absolute',
-              bottom: '-5px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '20px',
-              height: '6px',
-              background: 'rgba(0,0,0,0.2)',
-              borderRadius: '50%',
-              filter: 'blur(2px)',
-            }} />
-            
-            {/* Main Pin */}
-            <div style={{
-              position: 'relative',
-              width: '40px',
-              height: '40px',
-              background: 'linear-gradient(135deg, #ff4757, #c44569)',
-              borderRadius: '50% 50% 50% 0',
-              transform: 'rotate(-45deg)',
-              border: '3px solid white',
-              boxShadow: '0 4px 12px rgba(255, 71, 87, 0.4)',
-              animation: 'bounce 0.6s ease-out',
-            }}>
-              {/* Inner circle */}
-              <div style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%) rotate(45deg)',
-                width: '16px',
-                height: '16px',
-                background: 'white',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
+        
+        {/* Marker based on click location (stable during zoom) */}
+        {marker && (
+          <Marker
+            longitude={marker.longitude}
+            latitude={marker.latitude}
+            anchor="bottom"
+          >
+            <div style={{ width: 0, height: 0, position: 'relative' }}>
+              <div
+                className="clicked-marker"
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: 40,
+                  height: 40,
+                  cursor: 'pointer',
+                }}
+              >
                 <div style={{
-                  width: '8px',
-                  height: '8px',
-                  background: '#ff4757',
+                  position: 'absolute',
+                  bottom: '-3px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: 20,
+                  height: 6,
+                  background: 'rgba(0,0,0,0.2)',
                   borderRadius: '50%',
+                  filter: 'blur(2px)',
                 }} />
+
+                <div style={{
+                  width: '100%',
+                  height: '100%',
+                  position: 'relative',
+                }}>
+                  <div style={{
+                    width: '100%',
+                    height: '100%',
+                    background: 'linear-gradient(135deg, #ff4757, #c44569)',
+                    borderRadius: '50% 50% 50% 0',
+                    transform: 'rotate(-45deg)',
+                    border: '3px solid white',
+                    boxShadow: '0 4px 12px rgba(255, 71, 87, 0.4)',
+                    animation: 'bounce 0.6s ease-out',
+                  }} />
+
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%) rotate(45deg)',
+                    width: 16,
+                    height: 16,
+                    background: 'white',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                    <div style={{ width: 8, height: 8, background: '#ff4757', borderRadius: '50%' }} />
+                  </div>
+                </div>
+
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '50% 50% 50% 0',
+                  transform: 'rotate(-45deg)',
+                  border: '2px solid #ff4757',
+                  animation: 'pulse 2s infinite',
+                  opacity: 0.6,
+                }} />
+
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: 'calc(100% + 8px)',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: 'rgba(0, 0, 0, 0.8)',
+                    color: 'white',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    fontSize: 12,
+                    whiteSpace: 'nowrap',
+                    opacity: 0,
+                    transition: 'opacity 0.2s ease',
+                    pointerEvents: 'none',
+                    zIndex: 1000,
+                  }}
+                  className="marker-tooltip"
+                >
+                  {marker.latitude.toFixed(6)}, {marker.longitude.toFixed(6)}
+                </div>
               </div>
             </div>
-            
-            {/* Pulse effect */}
-            <div style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              width: '40px',
-              height: '40px',
-              borderRadius: '50% 50% 50% 0',
-              transform: 'rotate(-45deg)',
-              border: '2px solid #ff4757',
-              animation: 'pulse 2s infinite',
-              opacity: '0.6',
-            }} />
-          </div>
-        </Marker>
+          </Marker>
+        )}
         
         {/* Hospital Markers */}
         {hospitals.map((hospital, index) => (
@@ -383,15 +340,10 @@ export default function MapSection() {
             >
               <div 
                 className="hospital-marker"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleHospitalClick(hospital);
-                }}
                 style={{
                 position: 'relative',
                 cursor: 'pointer',
               }}>
-                {/* Hospital marker shadow */}
                 <div style={{
                   position: 'absolute',
                   bottom: '-3px',
@@ -404,7 +356,6 @@ export default function MapSection() {
                   filter: 'blur(1px)',
                 }} />
                 
-                {/* Hospital marker */}
                 <div style={{ 
                   background: 'linear-gradient(135deg, #10b981, #059669)', 
                   borderRadius: '50%', 
@@ -422,7 +373,6 @@ export default function MapSection() {
                   </svg>
                 </div>
                 
-                {/* Hospital label */}
                 <div style={{
                   position: 'absolute',
                   top: '38px',
@@ -459,15 +409,10 @@ export default function MapSection() {
             >
               <div 
                 className="police-marker"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePoliceClick(police);
-                }}
                 style={{
                 position: 'relative',
                 cursor: 'pointer',
               }}>
-                {/* Police marker shadow */}
                 <div style={{
                   position: 'absolute',
                   bottom: '-3px',
@@ -480,7 +425,6 @@ export default function MapSection() {
                   filter: 'blur(1px)',
                 }} />
                 
-                {/* Police marker */}
                 <div style={{ 
                   background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)', 
                   borderRadius: '50%', 
@@ -498,7 +442,6 @@ export default function MapSection() {
                   </svg>
                 </div>
                 
-                {/* Police label */}
                 <div style={{
                   position: 'absolute',
                   top: '38px',
@@ -524,157 +467,143 @@ export default function MapSection() {
           ) : null
         ))}
 
-        {/* Popups */}
-        {showPopup && popupInfo && (
-          <Popup
-            longitude={popupInfo.longitude}
-            latitude={popupInfo.latitude}
-            closeButton={true}
-            closeOnClick={false}
-            onClose={() => {
-              setShowPopup(null);
-              setPopupInfo(null);
-            }}
-            anchor="bottom"
-            maxWidth="320px"
-          >
-            <div className="p-4 min-w-[280px]">
-              {/* Hospital Popup */}
-              {popupInfo.type === 'hospital' && (
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                        <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900">{popupInfo.title}</h3>
-                      <p className="text-sm text-gray-600">{popupInfo.details.type}</p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-gray-700 mb-3">{popupInfo.description}</p>
-                  <div className="space-y-2">
-                    <div className="text-xs text-gray-600">
-                      <strong>Services:</strong>
-                      <ul className="mt-1 space-y-1">
-                        {popupInfo.details.services.map((service, idx) => (
-                          <li key={idx} className="flex items-center gap-1">
-                            <span className="w-1 h-1 bg-green-500 rounded-full"></span>
-                            {service}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="pt-2 border-t border-gray-200">
-                      <p className="text-xs text-gray-600">
-                        <strong>Contact:</strong> {popupInfo.details.contact}
-                      </p>
-                    </div>
-                  </div>
+        {/* Park Markers */}
+        {parks.map((park, index) => (
+          park.geometry && park.geometry.coordinates ? (
+            <Marker
+              key={`park-${index}`}
+              longitude={park.geometry.coordinates[0]}
+              latitude={park.geometry.coordinates[1]}
+              anchor="center"
+            >
+              <div 
+                className="park-marker"
+                style={{
+                position: 'relative',
+                cursor: 'pointer',
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  bottom: '-3px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '16px',
+                  height: '4px',
+                  background: 'rgba(0,0,0,0.2)',
+                  borderRadius: '50%',
+                  filter: 'blur(1px)',
+                }} />
+                
+                <div style={{ 
+                  background: 'linear-gradient(135deg, #22c55e, #16a34a)', 
+                  borderRadius: '50%', 
+                  width: '32px', 
+                  height: '32px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  border: '3px solid white',
+                  boxShadow: '0 4px 12px rgba(34, 197, 94, 0.4)',
+                  transition: 'transform 0.2s ease',
+                }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                    <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/>
+                  </svg>
                 </div>
-              )}
+                
+                <div style={{
+                  position: 'absolute',
+                  top: '38px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  background: 'rgba(34, 197, 94, 0.9)',
+                  color: 'white',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                  fontSize: '10px',
+                  fontWeight: 'bold',
+                  whiteSpace: 'nowrap',
+                  opacity: '0',
+                  transition: 'opacity 0.2s ease',
+                  pointerEvents: 'none',
+                }}
+                className="park-label"
+                >
+                  {park.name || 'Park'}
+                </div>
+              </div>
+            </Marker>
+          ) : null
+        ))}
 
-              {/* Police Popup */}
-              {popupInfo.type === 'police' && (
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900">{popupInfo.title}</h3>
-                      <p className="text-sm text-gray-600">{popupInfo.details.type}</p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-gray-700 mb-3">{popupInfo.description}</p>
-                  <div className="space-y-2">
-                    <div className="text-xs text-gray-600">
-                      <strong>Services:</strong>
-                      <ul className="mt-1 space-y-1">
-                        {popupInfo.details.services.map((service, idx) => (
-                          <li key={idx} className="flex items-center gap-1">
-                            <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
-                            {service}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="pt-2 border-t border-gray-200">
-                      <p className="text-xs text-gray-600">
-                        <strong>Contact:</strong> {popupInfo.details.contact}
-                      </p>
-                    </div>
-                  </div>
+        {/* Fire Station Markers */}
+        {fireStations.map((fireStation, index) => (
+          fireStation.geometry && fireStation.geometry.coordinates ? (
+            <Marker
+              key={`fire-${index}`}
+              longitude={fireStation.geometry.coordinates[0]}
+              latitude={fireStation.geometry.coordinates[1]}
+              anchor="center"
+            >
+              <div 
+                className="fire-marker"
+                style={{
+                position: 'relative',
+                cursor: 'pointer',
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  bottom: '-3px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '16px',
+                  height: '4px',
+                  background: 'rgba(0,0,0,0.2)',
+                  borderRadius: '50%',
+                  filter: 'blur(1px)',
+                }} />
+                
+                <div style={{ 
+                  background: 'linear-gradient(135deg, #ef4444, #dc2626)', 
+                  borderRadius: '50%', 
+                  width: '32px', 
+                  height: '32px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  border: '3px solid white',
+                  boxShadow: '0 4px 12px rgba(239, 68, 68, 0.4)',
+                  transition: 'transform 0.2s ease',
+                }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                    <path d="M17.66 11.2C17.43 10.9 17.15 10.64 16.89 10.38C16.22 9.78 15.46 9.35 14.82 8.72C13.33 7.26 13 4.85 13.95 3C13 3.23 12.17 3.75 11.46 4.32C8.87 6.4 7.85 10.07 9.07 14.22C9.11 14.32 9.15 14.42 9.15 14.55C9.15 14.68 9.07 14.82 8.94 14.82C8.81 14.82 8.73 14.68 8.68 14.55C8.4 13.41 8.4 12.24 8.68 11.1C8.1 11.87 7.8 12.75 7.8 13.64C7.8 15.57 8.79 17.25 10.3 18.24C10.5 18.37 10.71 18.5 10.94 18.6C11.27 18.74 11.64 18.81 12 18.81C13.85 18.81 15.55 17.8 16.5 16.28C17.66 14.37 17.66 11.95 17.66 11.2Z"/>
+                  </svg>
                 </div>
-              )}
-
-              {/* New Report Popup */}
-              {popupInfo.type === 'newReport' && (
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900">{popupInfo.title}</h3>
-                      <p className="text-sm text-gray-600">Submit an issue report</p>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">
-                        Description *
-                      </label>
-                      <textarea
-                        value={reportForm.description}
-                        onChange={(e) => setReportForm({...reportForm, description: e.target.value})}
-                        placeholder="Describe the issue..."
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                        rows="3"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">
-                        Photo (Optional)
-                      </label>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => setReportForm({...reportForm, photo: e.target.files[0]})}
-                        className="w-full text-xs text-gray-600 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-medium file:bg-red-50 file:text-red-700 hover:file:bg-red-100"
-                      />
-                    </div>
-                    
-                    <div className="flex gap-2 pt-2">
-                      <button
-                        onClick={handleReportSubmit}
-                        className="flex-1 bg-red-500 text-white text-sm font-medium py-2 px-3 rounded-md hover:bg-red-600 transition-colors"
-                      >
-                        Submit Report
-                      </button>
-                      <button
-                        onClick={() => {
-                          setShowPopup(null);
-                          setPopupInfo(null);
-                        }}
-                        className="px-3 py-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
+                
+                <div style={{
+                  position: 'absolute',
+                  top: '38px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  background: 'rgba(239, 68, 68, 0.9)',
+                  color: 'white',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                  fontSize: '10px',
+                  fontWeight: 'bold',
+                  whiteSpace: 'nowrap',
+                  opacity: '0',
+                  transition: 'opacity 0.2s ease',
+                  pointerEvents: 'none',
+                }}
+                className="fire-label"
+                >
+                  {fireStation.name || 'Fire Station'}
                 </div>
-              )}
-            </div>
-          </Popup>
-        )}
+              </div>
+            </Marker>
+          ) : null
+        ))}
       </Map>
       
       {/* Loading indicator */}
@@ -692,25 +621,39 @@ export default function MapSection() {
           Loading...
         </div>
       )}
-
-      {/* Notification */}
-      {notification && (
+      
+      {/* Pin placement indicator */}
+      {marker && (
         <div style={{
           position: "absolute",
           top: "16px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          background: notification.type === 'success' ? '#10b981' : '#ef4444',
-          color: 'white',
-          padding: "12px 16px",
+          left: "16px",
+          background: "rgba(255, 71, 87, 0.9)",
+          color: "white",
+          padding: "8px 12px",
           borderRadius: "8px",
-          fontSize: "14px",
-          fontWeight: "500",
-          zIndex: 40,
-          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-          animation: "slideDown 0.3s ease-out"
+          fontSize: "12px",
+          zIndex: 30,
+          boxShadow: "0 2px 8px rgba(0,0,0,0.2)"
         }}>
-          {notification.message}
+          📍 Pin placed at {marker.latitude.toFixed(4)}, {marker.longitude.toFixed(4)}
+        </div>
+      )}
+      
+      {/* Instructions */}
+      {!marker && !loading && (
+        <div style={{
+          position: "absolute",
+          bottom: "16px",
+          left: "16px",
+          background: "rgba(0,0,0,0.7)",
+          color: "white",
+          padding: "8px 12px",
+          borderRadius: "8px",
+          fontSize: "12px",
+          zIndex: 30
+        }}>
+          👆 Click anywhere on the map to place a pin
         </div>
       )}
     </div>

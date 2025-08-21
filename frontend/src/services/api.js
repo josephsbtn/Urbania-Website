@@ -44,17 +44,38 @@ const apiRequest = async (endpoint, options = {}) => {
 export const mockAPI = {
   // Get hospitals mock data
   getHospitals: async () => {
-    const hospitaL = (
-      await axios.get(`${API_BASE_URL}/public-service/hospitals`)
-    ).data;
-    return hospitaL;
+    try {
+      const result = await axios.get(`${API_BASE_URL}/public-service/hospitals`);
+      return result.data;
+    } catch (error) {
+      console.warn("Hospital API failed, using fallback mock data");
+      return {
+        result: [
+          {
+            name: "Singapore General Hospital",
+            geometry: { coordinates: [103.8462, 1.2801] }
+          }
+        ]
+      };
+    }
   },
 
   // Get police stations mock data
   getPoliceStations: async () => {
-    const police = (await axios.get(`${API_BASE_URL}/public-service/polices`))
-      .data;
-    return police;
+    try {
+      const result = await axios.get(`${API_BASE_URL}/public-service/polices`);
+      return result.data;
+    } catch (error) {
+      console.warn("Police API failed, using fallback mock data");
+      return {
+        result: [
+          {
+            name: "Central Police Division", 
+            geometry: { coordinates: [103.8520, 1.2840] }
+          }
+        ]
+      };
+    }
   },
 
   // Air Quality Index data
@@ -128,6 +149,7 @@ export const mockAPI = {
     const forecastingWater = await axios.get(
       `${API_BASE_URL}/predict/forecast`
     );
+    console.log("Forecasting data loaded:", forecastingWater.data);
     return {
       reports: [
         { name: "", value: 12 },
@@ -155,20 +177,119 @@ export const publicServiceAPI = {
       const result = await axios.get(
         `${API_BASE_URL}/public-service/hospitals`
       );
-      return result.data.result;
+      return result.data;
     } catch (error) {
-      console.warn("Using mock hospital data due to API error");
-      return mockAPI.getHospitals();
+      console.warn("Using mock hospital data due to API error", error);
+      // Return mock data with proper structure
+      return {
+        result: [
+          {
+            name: "Singapore General Hospital",
+            geometry: {
+              coordinates: [103.8462, 1.2801]
+            }
+          },
+          {
+            name: "National University Hospital",
+            geometry: {
+              coordinates: [103.7838, 1.2966]
+            }
+          }
+        ]
+      };
     }
   },
 
   // Get all police stations
   getPoliceStations: async () => {
     try {
-      return await apiRequest("/public-service/polices");
+      const result = await axios.get(
+        `${API_BASE_URL}/public-service/polices`
+      );
+      return result.data;
     } catch (error) {
-      console.warn("Using mock police data due to API error");
-      return mockAPI.getPoliceStations();
+      console.warn("Using mock police data due to API error", error);
+      // Return mock data with proper structure
+      return {
+        result: [
+          {
+            name: "Central Police Division",
+            geometry: {
+              coordinates: [103.8520, 1.2840]
+            }
+          },
+          {
+            name: "Tanglin Police Division",
+            geometry: {
+              coordinates: [103.8240, 1.3048]
+            }
+          }
+        ]
+      };
+    }
+  },
+
+  // Get all parks
+  getParks: async () => {
+    try {
+      const result = await axios.get(
+        `${API_BASE_URL}/public-service/parks`
+      );
+      return result.data;
+    } catch (error) {
+      console.warn("Using mock parks data due to API error", error);
+      // Return mock data with proper structure
+      return {
+        result: [
+          {
+            name: "Marina Bay Gardens",
+            geometry: {
+              coordinates: [103.8636, 1.2815]
+            }
+          },
+          {
+            name: "East Coast Park",
+            geometry: {
+              coordinates: [103.9065, 1.3006]
+            }
+          },
+          {
+            name: "Botanic Gardens",
+            geometry: {
+              coordinates: [103.8154, 1.3138]
+            }
+          }
+        ]
+      };
+    }
+  },
+
+  // Get all fire stations
+  getFireStations: async () => {
+    try {
+      const result = await axios.get(
+        `${API_BASE_URL}/public-service/fire`
+      );
+      return result.data;
+    } catch (error) {
+      console.warn("Using mock fire stations data due to API error", error);
+      // Return mock data with proper structure
+      return {
+        result: [
+          {
+            name: "Central Fire Station",
+            geometry: {
+              coordinates: [103.8500, 1.2900]
+            }
+          },
+          {
+            name: "Marina Fire Station",
+            geometry: {
+              coordinates: [103.8600, 1.2800]
+            }
+          }
+        ]
+      };
     }
   },
 };

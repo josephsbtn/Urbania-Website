@@ -86,7 +86,8 @@ export default function ReportCard() {
               <img
                 src={previewUrl}
                 alt="Preview"
-                className="w-full h-32 object-cover rounded-lg mb-2"
+                className="w-full max-h-48 sm:h-32 object-cover rounded-lg mb-2"
+                style={{ width: '100%', height: 'auto' }}
               />
               <button
                 onClick={(e) => {
