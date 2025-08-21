@@ -6,50 +6,55 @@ import axios from "axios";
 export default function SolarPanel() {
   const [location, setLocation] = useState({ lat: null, lon: null });
   const [error, setError] = useState(null);
-  const [solarData, setSolarData] = useState(null);
+  const [solarData, setSolarData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const getSolarPanelData = async () => {
-    try {
-      setIsLoading(true);
+const getSolarPanelData = async () => {
+  try {
+    setIsLoading(true);
 
-      await getLocation();
+    const { lat, lon } = await getLocation(); // sekarang dapat koordinat langsung
 
-      const { lat, lon } = location;
+    console.log("Latitude:", lat);
+    console.log("Longitude:", lon);
 
-      const response = await axios.get(
-        `http://127.0.0.1:8000/predict/solar/${lon}/${lat}`
-      );
-
-      setSolarData(response.data.result);
-      console.log("Solar API Response:", response.data);
-    } catch (error) {
-      console.error("Error fetching solar panel data:", error);
-      setError(error.message || "Failed to fetch solar panel data");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const getLocation = () => {
-    if (!navigator.geolocation) {
-      setError("Geolocation is not supported by your browser");
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLocation({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude,
-        });
-        setError(null);
-      },
-      (err) => {
-        setError(err.message);
-      }
+    const response = await axios.get(
+      `http://127.0.0.1:8000/predict/solar/${lon}/${lat}`
     );
-  };
+    console.log("Solar API Response:", response.data);
+
+    setSolarData(response.data.result);
+    setError(null);
+  } catch (error) {
+    console.error("Error fetching solar panel data:", error);
+    setError(error.message || "Failed to fetch solar panel data");
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+
+const getLocation = () => {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error("Geolocation is not supported by your browser"));
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const coords = {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+          };
+          resolve(coords);
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    }
+  });
+};
+
 
   return (
     <div className="flex flex-col items-start justify-start">
@@ -71,7 +76,7 @@ export default function SolarPanel() {
       ) : solarData ? (
         <div className="mt-4">
           <p className="text-gray-600">
-            You can generate <span className="font-bold">{solarData}</span> kWh
+            You can generate <span className="font-bold">{solarData.estimated} KwH</span> kWh
             of energy from your rooftop!
           </p>
         </div>

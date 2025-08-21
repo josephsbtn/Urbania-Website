@@ -15,21 +15,22 @@ const predictSolarPanel = async (lon, lat) => {
       )
     ).data;
 
-    const currentDate = new Date.now();
+    console.log(result);
 
-    const formattedResult = result.map((item) => ({
-      estimated: item.estimated_generation_kWh_per_year,
+    const currentDate = new Date();
+
+    const formattedResult = {
+      estimated: result.estimated_generation_kWh_per_year,
       geometry: {
         type: "Point",
-        coordinates: [item.lon, item.lat],
+        coordinates: [result.lon, result.lat],
       },
-      roofArea: item.roof_area_m2,
-    }));
-
+      roofArea: result.roof_area_m2,
+    };
     await HistorySolarPredict.create({ date: currentDate, ...formattedResult });
     return formattedResult;
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     return error;
   }
 };
