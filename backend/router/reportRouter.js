@@ -8,9 +8,9 @@ router.post("/", upload.single("photo"), (req, res) => {
     const { description } = req.body;
     const photoPath = req.file.path;
     const upload = uploadReport(photoPath, description);
-    res.status(201).json({ upload });
+    return res.status(201).json({ upload });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 });
 
