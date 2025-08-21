@@ -21,7 +21,7 @@ export default function SolarPanel() {
         `http://127.0.0.1:5000/predict/solar/${lon}/${lat}`
       );
 
-      setSolarData(response.data);
+      setSolarData(response.data.result);
       console.log("Solar API Response:", response.data);
     } catch (error) {
       console.error("Error fetching solar panel data:", error);
