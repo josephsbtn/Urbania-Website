@@ -7,10 +7,10 @@ const getAllReports = async () => {
   try {
     const chached = await Redis.get("report");
     if (chached) {
-      return chached;
+      return JSON.parse(chached);
     }
     const result = await Report.find({});
-    await Redis.set("report", result);
+    await Redis.set("report", JSON.stringify(result));
     return result;
   } catch (error) {
     console.error(error);
@@ -20,8 +20,7 @@ const getAllReports = async () => {
 
 const uploadReport = async (photo, description) => {
   try {
-    const { description } = req.body;
-    const photoPath = req.file.path;
+    const photoPath = photo;
 
     const imageBuffer = fs.readFileSync(photoPath);
     const base64Image = imageBuffer.toString("base64");
@@ -41,17 +40,24 @@ const uploadReport = async (photo, description) => {
       )
     ).data;
 
+    console.log(getLabel.predicted_class); // corle.log(getLabel);
     // simpan ke MongoDB
     const report = await Report.create({
       photo: photoPath,
       description,
-      category: getLabel,
+      category: getLabel.predicted_class,
     });
 
-    res.json({ success: true, report });
+    console.log(report);
+
+    return data = {
+      photo: report.photo,
+      description: report.description,
+      category: report.category,
+    }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, error: error.message });
+    
   }
 };
 
