@@ -6,6 +6,8 @@ const {
   getAllPark,
   getAllFireStation,
   calcHappinessIndex,
+  getAQI,
+  getWeather,
 } = require("../service/publicService.js");
 
 router.get("/hospitals", async (req, res) => {

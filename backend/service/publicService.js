@@ -10,10 +10,10 @@ const getAllHostipals = async () => {
   try {
     const chached = await Redis.get("hospitals");
     if (chached) {
-      return chached;
+      return JSON.parse(chached);
     }
     const result = await Hospital.find({});
-    await Redis.set("hospitals", result);
+    await Redis.set("hospitals", JSON.stringify(result));
     return result;
   } catch (error) {
     console.error(error);
@@ -25,10 +25,10 @@ const getAllPolice = async () => {
   try {
     const chached = await Redis.get("police");
     if (chached) {
-      return chached;
+      return JSON.parse(chached);
     }
     const result = await Police.find({});
-    await Redis.set("police", result);
+    await Redis.set("police", JSON.stringify(result));
     return result;
   } catch (error) {
     console.error(error);
@@ -40,10 +40,10 @@ const getAllPark = async () => {
   try {
     const chached = await Redis.get("park");
     if (chached) {
-      return chached;
+      return JSON.parse(chached);
     }
     const result = await Park.find({});
-    await Redis.set("park", result);
+    await Redis.set("park", JSON.stringify(result));
     return result;
   } catch (error) {
     console.error(error);
@@ -210,6 +210,7 @@ const calcHappinessIndex = async () => {
     healthCoverage,
     policeCoverage,
     parkCoverage,
+    damkarCoverage,
     happinessIndex: HI * 100,
   };
 };
@@ -217,10 +218,33 @@ const calcHappinessIndex = async () => {
 const getAQI = async () => {
   try {
     const result = (
-      await axios.get(`https://api.waqi.info/feed/geo:${1.3521};${103.8198}/?token="9883ecf1e24192cf9e66f368d1ec6350c55e2be1"
-`)
+      await axios.get(
+        "https://api.waqi.info/feed/geo:1.3521;103.8198/?token=9883ecf1e24192cf9e66f368d1ec6350c55e2be1"
+      )
     ).data;
-    return { aqi: result.data.aqi };
+    const statusAPI = (
+      await axios.get(
+        `http://api.openweathermap.org/data/2.5/air_pollution?lat=1.3521&lon=103.8198&appid=8a2989e0165147dd6ff08920365dde85`
+      )
+    ).data;
+    let status = "";
+    if (statusAPI.list[0].main.aqi === 1) {
+      status = "Good";
+    }
+    if (statusAPI.list[0].main.aqi === 2) {
+      status = "Fair";
+    }
+    if (statusAPI.list[0].main.aqi === 3) {
+      status = "Moderate";
+    }
+    if (statusAPI.list[0].main.aqi === 4) {
+      status = "Unhealthy";
+    }
+    if (statusAPI.list[0].main.aqi === 5) {
+      status = "Very Poor";
+    }
+
+    return { aqi: result.data.aqi, status: status };
   } catch (error) {
     console.log("Failed to get AQI");
     return Error("Failed to get AQI");
@@ -230,15 +254,11 @@ const getAQI = async () => {
 const getWeather = async () => {
   try {
     const result = (
-      await axios.get(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=1.3521&lon=103.8198&appid="8a2989e0165147dd6ff08920365dde85"`
-      )
+      await axios.get(`https://api.data.gov.sg/v1/environment/uv-index`)
     ).data;
     return {
-      temperature: result.current.temp,
-      humidity: result.current.humidity,
-      windSpeed: result.current.wind_speed,
-      uvIndex: result.current.uvi,
+      uvIndex: result.items[0].index[0].value,
+      label: result.api_info.status,
     };
   } catch (error) {
     console.log("Failed to get weather");

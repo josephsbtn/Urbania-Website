@@ -23,6 +23,7 @@ dbconnect()
     calcHappinessIndex();
     app.use("/report", express.static("uploads"), reportRouter);
     app.use("/public-service", publicServiceRouter);
+    app.use("/predict", predictRouter);
   })
   .catch((err) => {
     console.log(err);

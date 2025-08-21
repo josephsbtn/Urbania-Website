@@ -1,6 +1,6 @@
 const express = require("express");
 const upload = require("../config/multer.js");
-const { uploadReport } = require("../service/reportService");
+const { uploadReport, getAllReports } = require("../service/reportService");
 const router = express.Router();
 
 router.post("/", upload.single("photo"), (req, res) => {
@@ -11,7 +11,15 @@ router.post("/", upload.single("photo"), (req, res) => {
     res.status(201).json({ upload });
   } catch (error) {
     res.status(500).json({ error: error.message });
-    s;
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const result = await getAllReports();
+    return res.status(200).json({ result });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
 });
 
