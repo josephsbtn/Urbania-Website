@@ -104,10 +104,7 @@ export default function Dashboard() {
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-4 border-b border-gray-200">
               <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                🗺️ Interactive Map
-                <span className="text-sm font-normal text-gray-500">
-                  Click to add reports
-                </span>
+                🗺️ City Map
               </h2>
             </div>
             <MapSection />

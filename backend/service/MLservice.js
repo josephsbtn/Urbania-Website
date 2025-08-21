@@ -42,10 +42,13 @@ const forecasting = async () => {
       (await axios.get(`http://127.0.0.1:5000/forecast/electricity`)).data,
     ]);
 
+    console.log("Water Forecasting:", water);
+    console.log("Electricity Forecasting:", elec);
+
     return {
       water: {
-        year1: water.water_forecasting.year1,
-        year3: water.water_forecasting.year3,
+        year1: water.water_forecast.year1,
+        year3: water.water_forecast.year3,
       },
       elec: {
         menit30: elec.electricity_forecast.menit30,

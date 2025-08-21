@@ -35,7 +35,7 @@ export default function ReportList() {
         <p>Loading...</p>
       ) : reportData && reportData.length > 0 ? (
         <div className="overflow-y-scroll p-2 w-full flex flex-col gap-4" style={{ maxHeight: '300px' }}>
-          {reportData.map((report) => (
+          {reportData.slice().reverse().map((report) => (
             <div
               className="bg-white rounded-xl shadow-md flex flex-col items-center p-4 min-h-40 border border-gray-100 hover:shadow-lg transition"
               key={report.id || report.photo}
