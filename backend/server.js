@@ -19,7 +19,7 @@ dbconnect()
     app.listen(8000, () => {
       console.log("Server is running on port 8000");
     });
-    calcHappinessIndex();
+    calcHappinessIndex(); 
     app.use("/report", express.static("uploads"), reportRouter);
     app.use("/public-service", publicServiceRouter);
   })

@@ -189,6 +189,7 @@ const calcHappinessIndex = async () => {
   const healthCoverage = (health / totalPop) * 100;
   const policeCoverage = (police / totalPop) * 100;
   const parkCoverage = (park / totalPop) * 100;
+  const damkarCoverage = (fire / totalPop) * 100;
 
   const scoreHealth = healthCoverage / 100;
   const scorePolice = policeCoverage / 100;

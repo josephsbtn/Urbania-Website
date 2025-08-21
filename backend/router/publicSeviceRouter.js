@@ -4,6 +4,8 @@ const {
   getAllHostipals,
   getAllPolice,
   getAllPark,
+  getAllFireStation,
+  calcHappinessIndex,
 } = require("../service/publicService.js");
 
 router.get("/hospitals", async (req, res) => {
@@ -27,6 +29,24 @@ router.get("/polices", async (req, res) => {
 router.get("/parks", async (req, res) => {
   try {
     const result = await getAllPark();
+    return res.status(200).json({ result });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/fire", async (req, res) => {
+  try {
+    const result = await getAllFireStation();
+    return res.status(200).json({ result });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/happiness", async (req, res) => {
+  try {
+    const result = await calcHappinessIndex();
     return res.status(200).json({ result });
   } catch (error) {
     return res.status(500).json({ error: error.message });
