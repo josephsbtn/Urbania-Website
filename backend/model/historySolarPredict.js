@@ -23,7 +23,8 @@ const historySchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
+  { collection: "historysolarpredicts" }
 );
 
 const model = mongoose.model("HistorySolarPredict", historySchema);

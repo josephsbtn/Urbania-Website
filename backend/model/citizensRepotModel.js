@@ -21,7 +21,7 @@ const reportSchema = new mongoose.Schema(
       },
     },
   },
-  { collection: "firestation" }
+  { collection: "citizen-reports" }
 );
 
 const model = mongoose.model("Citizen-Reports", reportSchema);
