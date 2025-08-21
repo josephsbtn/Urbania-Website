@@ -21,6 +21,8 @@ dbconnect()
       console.log("Server is running on port 8000");
     });
     calcHappinessIndex();
+    // Serve uploads folder statically for image access
+    app.use('/uploads', express.static('uploads'));
     app.use("/report", express.static("uploads"), reportRouter);
     app.use("/public-service", publicServiceRouter);
     app.use("/predict", predictRouter);

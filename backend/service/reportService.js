@@ -5,12 +5,12 @@ const fs = require("fs");
 
 const getAllReports = async () => {
   try {
-    const chached = await Redis.get("report");
-    if (chached) {
-      return JSON.parse(chached);
-    }
+    // const chached = await Redis.get("report");
+    // if (chached) {
+    //   return JSON.parse(chached);
+    // }
     const result = await Report.find({});
-    await Redis.set("report", JSON.stringify(result));
+    // await Redis.set("report", JSON.stringify(result));
     return result;
   } catch (error) {
     console.error(error);

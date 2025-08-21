@@ -102,12 +102,17 @@ export default function MapSection() {
   // Fetch public services data
   useEffect(() => {
     setLoading(true);
-    publicServiceAPI.getAll()
-      .then((data) => {
-        setHospitals(data.hospitals || []);
-        setPoliceStations(data.policeStations || []);
-        setParks(data.parks || []);
-        setFireStations(data.fireStations || []);
+    Promise.all([
+      publicServiceAPI.getHospitals(),
+      publicServiceAPI.getPoliceStations(),
+      publicServiceAPI.getParks(),
+      publicServiceAPI.getFireStations()
+    ])
+      .then(([hospitalsData, policeData, parksData, fireData]) => {
+        setHospitals(hospitalsData.result || []);
+        setPoliceStations(policeData.result || []);
+        setParks(parksData.result || []);
+        setFireStations(fireData.result || []);
       })
       .catch(() => {
         setHospitals([]);

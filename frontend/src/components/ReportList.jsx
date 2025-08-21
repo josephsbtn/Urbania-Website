@@ -34,16 +34,26 @@ export default function ReportList() {
       {isLoading ? (
         <p>Loading...</p>
       ) : reportData && reportData.length > 0 ? (
-        <div className="min-h-40 overflow-y-scroll p-2 w-full">
+        <div className="overflow-y-scroll p-2 w-full flex flex-col gap-4" style={{ maxHeight: '300px' }}>
           {reportData.map((report) => (
             <div
-              className="flex flex-col items-start justify-start p-2 min-h-30"
-              key={report.id || report.image}>
+              className="bg-white rounded-xl shadow-md flex flex-col items-center p-4 min-h-40 border border-gray-100 hover:shadow-lg transition"
+              key={report.id || report.photo}
+              style={{ minHeight: '180px' }}
+            >
               <img
-                src={`../../../backend/${report.image}`}
-                alt={report.image}
+                src={`http://localhost:8000/${report.photo}`}
+                alt={report.description}
+                className="w-40 max-h-20 object-fill rounded-lg mb-3 border border-gray-200"
               />
-              <p>{report.description}</p>
+              <div className="w-full flex flex-col items-center justify-center">
+                <p className="text-gray-800 font-semibold mb-1 text-center truncate w-full" title={report.description}>
+                  {report.description}
+                </p>
+                <span className="inline-block px-3 py-1 text-xs rounded-full bg-pink-100 text-pink-700 font-bold mt-1">
+                  {report.category}
+                </span>
+              </div>
             </div>
           ))}
         </div>
@@ -53,7 +63,7 @@ export default function ReportList() {
         <div className="flex flex-col items-start justify-start p-2">
           <h1>No Data Report</h1>
         </div>
-      )}
+      )}  
     </div>
   );
 }
