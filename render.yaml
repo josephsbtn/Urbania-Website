@@ -1,26 +1,31 @@
 services:
-  # Backend API
+  # Backend API (Node.js + Express + MongoDB)
   - type: web
     name: urbania-backend
     runtime: node
-    buildCommand: npm install
-    startCommand: node server.js
+    region: singapore
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node server.js
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 8000
       - key: MONGODB_URI
-        sync: false # Set manually in Render dashboard
+        sync: false # ⚠️ Set this manually in Render dashboard with your MongoDB Atlas connection string
     healthCheckPath: /api/public-service/hospitals
     
-  # ML Service
+  # ML Service (Python + Flask)
   - type: web
     name: urbania-ml
     runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    region: singapore
+    plan: free
+    buildCommand: cd ml && pip install -r requirements.txt
+    startCommand: cd ml && python app.py
     envVars:
       - key: FLASK_ENV
         value: production
-    rootDir: ml
+      - key: PORT
+        value: 5000
