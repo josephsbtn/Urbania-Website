@@ -1,0 +1,2592 @@
+[{
+  "_id": {
+    "$oid": "68a026f67948be0ead114689"
+  },
+  "name": "TC Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7170846,
+      1.3475136
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11468a"
+  },
+  "name": "United Health Family Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8371166,
+      1.4176987
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11468b"
+  },
+  "name": "Singapore Orthopaedic Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8441955,
+      1.3220092
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11468c"
+  },
+  "name": "St John Singapore Dementia Centre",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8634603,
+      1.3016846
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11468d"
+  },
+  "name": "Eden Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7253692,
+      1.3498403
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11468e"
+  },
+  "name": "John T.L. Lim Clinic & Surgery",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7242788,
+      1.3501969
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11468f"
+  },
+  "name": "Loi+Wong Clinic & Surgery",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7252922,
+      1.3491651
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114690"
+  },
+  "name": "Oriental Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7244728,
+      1.3488909
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114691"
+  },
+  "name": "Sunnyvale Clinic & Surgery",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7241023,
+      1.3486841
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114692"
+  },
+  "name": "Jurong Day & Night Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.693105,
+      1.3416751
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114693"
+  },
+  "name": "Everhealth Family Clinic & Surgery",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6978081,
+      1.3486805
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114694"
+  },
+  "name": "Lee Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6978948,
+      1.3486717
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114695"
+  },
+  "name": "Phoenix Medical Group Novena",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8416434,
+      1.3211611
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114696"
+  },
+  "name": "The Family Doctor",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8349452,
+      1.3523595
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114697"
+  },
+  "name": "Health First Family Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.825695,
+      1.2825856
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114698"
+  },
+  "name": "Garden Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8677737,
+      1.3536722
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114699"
+  },
+  "name": "Shine Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7229812,
+      1.3505812
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11469a"
+  },
+  "name": "AMK Specialist Centre",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8471951,
+      1.3723779
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11469b"
+  },
+  "name": "Acumed Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6957771,
+      1.3248462
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11469c"
+  },
+  "name": "Dr. W. K. Koo & Associates P.L.",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7053262,
+      1.3383092
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11469d"
+  },
+  "name": "AcuMed Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7052453,
+      1.3382834
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11469e"
+  },
+  "name": "Family Point Clinic & Surgery",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7206124,
+      1.334493
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11469f"
+  },
+  "name": "Point Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7202551,
+      1.3344901
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146a0"
+  },
+  "name": "Prohealth Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7204337,
+      1.334493
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146a1"
+  },
+  "name": "Acumed Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7060509,
+      1.3401223
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146a2"
+  },
+  "name": "Apex Medical Centre",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6914701,
+      1.3413796
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146a3"
+  },
+  "name": "Dr W K Koo & Associates",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7062309,
+      1.3403378
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146a4"
+  },
+  "name": "GJ Medical Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7062423,
+      1.3401964
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146a5"
+  },
+  "name": "Fullerton Healthcare",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.706178,
+      1.3401735
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146a6"
+  },
+  "name": "My Doctor",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.720253,
+      1.34413
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146a7"
+  },
+  "name": "Prohealth Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6997945,
+      1.3399395
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146a8"
+  },
+  "name": "Healthway Medical",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6912394,
+      1.3414089
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146a9"
+  },
+  "name": "Drs Koo, Fok & Associates",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6938204,
+      1.3286162
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146aa"
+  },
+  "name": "Frontier Medical Associates",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7034374,
+      1.3450954
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ab"
+  },
+  "name": "Jurpoint Medicare Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7059079,
+      1.3400736
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ac"
+  },
+  "name": "Northeast Medical Centre",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6973409,
+      1.337197
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ad"
+  },
+  "name": "Pinnacle Family Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8422718,
+      1.294114
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ae"
+  },
+  "name": "Dr Chua's Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6971161,
+      1.3415639
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146af"
+  },
+  "name": "Healthmark Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6971597,
+      1.3415955
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146b0"
+  },
+  "name": "My Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6971951,
+      1.3416164
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146b1"
+  },
+  "name": "Bukit Batok Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.747842,
+      1.3520458
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146b2"
+  },
+  "name": "Healthserve Community Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7244263,
+      1.326912
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146b3"
+  },
+  "name": "Drs Koo, Fok & Associates",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6978778,
+      1.337582
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146b4"
+  },
+  "name": "Jade Medical Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8464372,
+      1.28884
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146b5"
+  },
+  "name": "Family Doctors at 365",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7202944,
+      1.3377341
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146b6"
+  },
+  "name": "Gethin-Jones Medical Practice",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6819925,
+      1.3430696
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146b7"
+  },
+  "name": "One Medical Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6974234,
+      1.3461364
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146b8"
+  },
+  "name": "Eiddwen Family Medicine Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8844532,
+      1.3096639
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146b9"
+  },
+  "name": "Acumed Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7224647,
+      1.3323546
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ba"
+  },
+  "name": "Drs Tang & Partners",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7223379,
+      1.3322962
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146bb"
+  },
+  "name": "Drs Koo Loh & Associates",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7206635,
+      1.3270611
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146bc"
+  },
+  "name": "Fullerton Health Hub",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9483825,
+      1.373491
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146bd"
+  },
+  "name": "Phoon Clinic and Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9145848,
+      1.3321484
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146be"
+  },
+  "name": "Cheong Medical Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7733342,
+      1.340453
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146bf"
+  },
+  "name": "NKF Dialysis Centre",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6887311,
+      1.3432993
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146c0"
+  },
+  "name": "Jinmin Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9118537,
+      1.3187727
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146c1"
+  },
+  "name": "Clifford Dispensary",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7098961,
+      1.3472212
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146c2"
+  },
+  "name": "Drs Koo, Loh & Fok",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6302044,
+      1.3107871
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146c3"
+  },
+  "name": "Acumed Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7043755,
+      1.2673611
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146c4"
+  },
+  "name": "Acumed Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6521976,
+      1.3173353
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146c5"
+  },
+  "name": "Community Medical Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7121778,
+      1.3467542
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146c6"
+  },
+  "name": "Boon Lay Clinic & Surgery",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7121847,
+      1.3464427
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146c7"
+  },
+  "name": "Bless Medical Centre",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7122329,
+      1.3463877
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146c8"
+  },
+  "name": "Central 24-HR Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7247113,
+      1.3500434
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146c9"
+  },
+  "name": "Banyan Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7181864,
+      1.3504414
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ca"
+  },
+  "name": "Silver Cross Medical",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7178464,
+      1.3503573
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146cb"
+  },
+  "name": "Geylang Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.88731,
+      1.3195749
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146cc"
+  },
+  "name": "Woodlands Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7752254,
+      1.4307876
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146cd"
+  },
+  "name": "Jurong Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7307295,
+      1.3496231
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ce"
+  },
+  "name": "Tampines Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9458598,
+      1.3572803
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146cf"
+  },
+  "name": "Sengkang Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8941112,
+      1.3926934
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146d0"
+  },
+  "name": "Outram Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8381683,
+      1.2799045
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146d1"
+  },
+  "name": "Farrer Park Hospital",
+  "amenity": "hospital",
+  "radius_efektif_km": 5,
+  "kapasitas_beds": 100,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.854,
+      1.3126
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146d2"
+  },
+  "name": "Bukit Merah Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8170178,
+      1.2836914
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146d3"
+  },
+  "name": "Marine Parade Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9077648,
+      1.3025477
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146d4"
+  },
+  "name": "Bedok Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9316066,
+      1.3269378
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146d5"
+  },
+  "name": "Pasir Ris Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9592631,
+      1.3686674
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146d6"
+  },
+  "name": "Dover Clinic and Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7816359,
+      1.3046845
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146d7"
+  },
+  "name": "Sembawang Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8228151,
+      1.4482078
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146d8"
+  },
+  "name": "Japanese Association Clinic, Singapore",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8157691,
+      1.330635
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146d9"
+  },
+  "name": "Hock Leong Ann TCM Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.891881,
+      1.4023201
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146da"
+  },
+  "name": "Calrose Medical",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8920392,
+      1.4022893
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146db"
+  },
+  "name": "Bok Family Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9086289,
+      1.3314614
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146dc"
+  },
+  "name": "JW Corporation Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7184351,
+      1.3489854
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146dd"
+  },
+  "name": "Sunshine Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7265472,
+      1.3495462
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146de"
+  },
+  "name": "Mao Medical Center & Surgery",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8318569,
+      1.2773807
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146df"
+  },
+  "name": "Priya Sen Skin & Laser Centre",
+  "amenity": "hospital",
+  "radius_efektif_km": 5,
+  "kapasitas_beds": 100,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8136561,
+      1.3225665
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146e0"
+  },
+  "name": "National Neuroscience Institute",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8455834,
+      1.3220719
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146e1"
+  },
+  "name": "Dr Steven Ang Asthetic & Family Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8161898,
+      1.2890851
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146e2"
+  },
+  "name": "Great Wall Acupuncture Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8162302,
+      1.2891531
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146e3"
+  },
+  "name": "Liu TCM clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8255999,
+      1.2825111
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146e4"
+  },
+  "name": "Hill Spring Medical",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8291137,
+      1.3715535
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146e5"
+  },
+  "name": "Hisemainn Medical Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7040322,
+      1.3536024
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146e6"
+  },
+  "name": "Acumed Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6779312,
+      1.3277251
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146e7"
+  },
+  "name": "K. L. Tay Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9146544,
+      1.332343
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146e8"
+  },
+  "name": "OneCare Medical Tiong Bahru",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8287953,
+      1.286088
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146e9"
+  },
+  "name": "The Clinic @ Campus",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8500685,
+      1.2963561
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ea"
+  },
+  "name": "Wong Family Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9089331,
+      1.3314315
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146eb"
+  },
+  "name": "Tay Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9088054,
+      1.3314484
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ec"
+  },
+  "name": "Pam Island Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9143056,
+      1.332581
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ed"
+  },
+  "name": "YSL Bedok Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9258356,
+      1.3317292
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ee"
+  },
+  "name": "Tan & Koh Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9097041,
+      1.3313435
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ef"
+  },
+  "name": "Healthplus Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9156241,
+      1.3331379
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146f0"
+  },
+  "name": "Eastern Medical Centre",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9156911,
+      1.3332007
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146f1"
+  },
+  "name": "Ban Kok Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8675772,
+      1.3316487
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146f2"
+  },
+  "name": "Dover Medical Centre",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7869593,
+      1.2961959
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146f3"
+  },
+  "name": "Frontier Family Medicine Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7651961,
+      1.3142867
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146f4"
+  },
+  "name": "Icon Medical Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7194569,
+      1.3454394
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146f5"
+  },
+  "name": "Caring Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7192017,
+      1.3499625
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146f6"
+  },
+  "name": "Kinder Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7190743,
+      1.3503539
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146f7"
+  },
+  "name": "中华医院",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8513408,
+      1.3322949
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146f8"
+  },
+  "name": "Northeast Medical Centre",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7199211,
+      1.3506929
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146f9"
+  },
+  "name": "OneCare Clinic Boon Lay",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7121141,
+      1.346558
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146fa"
+  },
+  "name": "StarMed Specialist Centre",
+  "amenity": "hospital",
+  "radius_efektif_km": 5,
+  "kapasitas_beds": 100,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8546429,
+      1.3122814
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146fb"
+  },
+  "name": "Joash Family Clinic and Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8885051,
+      1.3630401
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146fc"
+  },
+  "name": "Suwen TCM Clinic Pte Ltd",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8349052,
+      1.3524338
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146fd"
+  },
+  "name": "Trans Island Medical Group",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8621964,
+      1.3208122
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146fe"
+  },
+  "name": "My Family Clinic (Clementi 325)",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7668558,
+      1.3152781
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead1146ff"
+  },
+  "name": "Singapura Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8499262,
+      1.2987062
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114700"
+  },
+  "name": "Roy's Family Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8345517,
+      1.4171724
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114701"
+  },
+  "name": "The Rehab Practice (Paediatric) Pte Ltd",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7930458,
+      1.3023049
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114702"
+  },
+  "name": "Osteopathic Healthcare Pte Ltd",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7930402,
+      1.3024631
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114703"
+  },
+  "name": "Elyon Family Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8085649,
+      1.2739437
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114704"
+  },
+  "name": "Sunbeam Medical Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7697056,
+      1.3806587
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114705"
+  },
+  "name": "Joy Family Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9199923,
+      1.3371143
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114706"
+  },
+  "name": "Clementi Family Healthpoint Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7669293,
+      1.3210349
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114707"
+  },
+  "name": "A Medical Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8402447,
+      1.2774422
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114708"
+  },
+  "name": "Healthway Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7068471,
+      1.3411979
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114709"
+  },
+  "name": "T.S. Wong Clinic & Surgery",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7755304,
+      1.4342345
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11470a"
+  },
+  "name": "Raffles Medical",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9496416,
+      1.3725809
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11470b"
+  },
+  "name": "Minmed Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9494868,
+      1.3725843
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11470c"
+  },
+  "name": "Doctor Jay Medical Center",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8387311,
+      1.2980082
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11470d"
+  },
+  "name": "GIFT Medical Centre",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8787728,
+      1.3331731
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11470e"
+  },
+  "name": "Ong's Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8527701,
+      1.3022975
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11470f"
+  },
+  "name": "Bethesda Medical",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8875457,
+      1.3338071
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114710"
+  },
+  "name": "Frontier Family Medicine Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8874844,
+      1.3337201
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114711"
+  },
+  "name": "The Doctor's Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7247127,
+      1.3518816
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114712"
+  },
+  "name": "West Point Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6929272,
+      1.3469236
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114713"
+  },
+  "name": "Faith Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.921278,
+      1.3372021
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114714"
+  },
+  "name": "SATA CommHealth Uttamram Medical Centre",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.9213776,
+      1.3277349
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114715"
+  },
+  "name": "Killiney Medical Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8395433,
+      1.298913
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114716"
+  },
+  "name": "Singapore Chee Chung Huay Free Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8796607,
+      1.3310478
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114717"
+  },
+  "name": "The Oral Maxillofacial Practice",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8443128,
+      1.3221308
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114718"
+  },
+  "name": "Synergy Orthopaedic Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8441796,
+      1.3221208
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114719"
+  },
+  "name": "Pinnacle Family Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7637757,
+      1.3224108
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11471a"
+  },
+  "name": "Carelite Medical Centre",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7875642,
+      1.2990796
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11471b"
+  },
+  "name": "Raffles Medical",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7061135,
+      1.3401456
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11471c"
+  },
+  "name": "Point Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7059716,
+      1.3400951
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11471d"
+  },
+  "name": "Drs Oh, Lim, Wong & Partners",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6906352,
+      1.3414922
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11471e"
+  },
+  "name": "Foo Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6913199,
+      1.341631
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11471f"
+  },
+  "name": "Nanyang Centre Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6910014,
+      1.3415481
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114720"
+  },
+  "name": "Clementi Polyclinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7656185,
+      1.3126992
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114721"
+  },
+  "name": "Dawson Medical Singapore",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8094704,
+      1.2953713
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114722"
+  },
+  "name": "Minmed Clinic (Redhill)",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8170888,
+      1.2900423
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114723"
+  },
+  "name": "Pier Medical Centre",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6973409,
+      1.3454948
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114724"
+  },
+  "name": "Prohealth Medical Group",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7207694,
+      1.3344934
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114725"
+  },
+  "name": "Dr Soh Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.6930673,
+      1.3416457
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114726"
+  },
+  "name": "Fu-Xing Paediatric & Family Clinic",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8158642,
+      1.2834507
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114727"
+  },
+  "name": "Fresenius Medical Care",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8159022,
+      1.2836016
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114728"
+  },
+  "name": "Fresenius Medical Care",
+  "amenity": "doctors",
+  "radius_efektif_km": 0.7,
+  "kapasitas_beds": 5,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8159783,
+      1.2839038
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead114729"
+  },
+  "name": "Kerbal-Basic TCM Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.8277584,
+      1.2893739
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "68a026f67948be0ead11472a"
+  },
+  "name": "Tang Family Clinic",
+  "amenity": "clinic",
+  "radius_efektif_km": 1.5,
+  "kapasitas_beds": 20,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      103.7731508,
+      1.3404956
+    ]
+  }
+}]

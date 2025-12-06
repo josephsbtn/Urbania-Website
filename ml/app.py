@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from models.image_classifier import classify_report
 from models.forecast import forecast_electricity, forecast_water
 from models.solar import estimate_solar
 
 app = Flask(__name__)
+CORS(app)
 
 # 1️⃣ Endpoint klasifikasi laporan (image + description)
 @app.route("/classify", methods=["POST"])

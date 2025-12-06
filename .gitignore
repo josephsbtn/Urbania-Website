@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Environment variables
+.env
+.env.local
+
+# Build outputs
+frontend/dist/
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# ML models and runs
+ml/runs/
+ml/saved_models/
+ml/*.pt
+!ml/yolo11n.pt
+!ml/yolov8n.pt

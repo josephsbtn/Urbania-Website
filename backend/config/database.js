@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 dotenv.config();
-const mongoURI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/Urbania";
+const mongoURI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/urbania";
 const dbconnect = async () => {
   try {
     await mongoose.connect(mongoURI);

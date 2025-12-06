@@ -1,3 +1,110 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-cyber-background: #0a0a1a;
+  --color-cyber-surface: #14142b;
+  --color-cyber-primary: #00f6ff;
+  --color-cyber-secondary: #ff00ff;
+  --color-cyber-accent: #faff00;
+  --color-cyber-text-primary: #e6e6fa;
+  --color-cyber-text-secondary: #a9a9d4;
+  
+  --font-family-sans: "Orbitron", sans-serif;
+  
+  --shadow-neon-primary: 0 0 5px #00f6ff, 0 0 10px #00f6ff, 0 0 20px #00f6ff;
+  --shadow-neon-secondary: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+  
+  --animate-flicker: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@layer base {
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0a0a1a;
+    color: #e6e6fa;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  #root {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@layer components {
+  .maplibregl-popup-content {
+    background: rgba(20, 20, 43, 0.9) !important;
+    border: 1px solid #00f6ff;
+    box-shadow: 0 0 15px rgba(0, 246, 255, 0.5);
+    color: #e6e6fa;
+    border-radius: 0 !important;
+    padding: 1rem !important;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .maplibregl-popup-close-button {
+    color: #00f6ff;
+  }
+
+  .maplibregl-popup-anchor-top .maplibregl-popup-tip,
+  .maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+  .maplibregl-popup-anchor-left .maplibregl-popup-tip,
+  .maplibregl-popup-anchor-right .maplibregl-popup-tip {
+    border-color: transparent;
+    border-bottom-color: #00f6ff !important;
+  }
+
+  /* Scanline effect */
+  .scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 246, 255, 0.02) 51%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Corner brackets */
+  .corner-brackets {
+    position: relative;
+  }
+
+  .corner-brackets::before,
+  .corner-brackets::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00f6ff;
+  }
+
+  .corner-brackets::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .corner-brackets::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
+  }
+}

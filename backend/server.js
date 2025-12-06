@@ -23,9 +23,9 @@ dbconnect()
     calcHappinessIndex();
     // Serve uploads folder statically for image access
     app.use('/uploads', express.static('uploads'));
-    app.use("/report", express.static("uploads"), reportRouter);
-    app.use("/public-service", publicServiceRouter);
-    app.use("/predict", predictRouter);
+    app.use("/api/report", express.static("uploads"), reportRouter);
+    app.use("/api/public-service", publicServiceRouter);
+    app.use("/api/predict", predictRouter);
   })
   .catch((err) => {
     console.log(err);

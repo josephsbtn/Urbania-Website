@@ -1,346 +1,113 @@
-import axios from "axios";
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+import axios from 'axios';
 
-export const healthCheck = async () => {
+const API_URL = import.meta.env.VITE_API_URL || '/api';
+const ML_URL = import.meta.env.VITE_ML_URL || 'http://localhost:5000';
+
+const api = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+const mlApi = axios.create({
+  baseURL: ML_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Public Services
+export const getHospitals = async () => {
+  const response = await api.get('/public-service/hospitals');
+  return response.data.result || [];
+};
+
+export const getPolice = async () => {
+  const response = await api.get('/public-service/polices');
+  return response.data.result || [];
+};
+
+export const getParks = async () => {
+  const response = await api.get('/public-service/parks');
+  return response.data.result || [];
+};
+
+export const getFireStations = async () => {
+  const response = await api.get('/public-service/fire');
+  return response.data.result || [];
+};
+
+export const getHappiness = async () => {
+  const response = await api.get('/public-service/happiness');
+  return response.data.result || 0;
+};
+
+export const getWeather = async () => {
   try {
-    const response = await fetch(`${API_BASE_URL}/public-service/happiness`);
-    return await response.json();
+    const response = await api.get('/public-service/weather');
+    return response.data;
   } catch (error) {
-    console.error("Backend health check failed:", error);
-    return { status: "ERROR", message: "Backend unavailable" };
+    console.error('Weather API error:', error);
+    // Return dummy data if API fails
+    return {
+      uvIndex: 5,
+      label: 'moderate',
+      aqi: { aqi: 45, status: 'Good' }
+    };
   }
 };
 
-const apiRequest = async (endpoint, options = {}) => {
+// Reports
+export const getCitizenReports = async () => {
+  const response = await api.get('/report/');
+  return response.data.result || [];
+};
+
+// Predictions
+export const getForecast = async () => {
+  const response = await api.get('/predict/forecast');
+  return response.data.result || null;
+};
+
+export const getSolarPotential = async (lon, lat) => {
+  const response = await api.get(`/predict/solar/${lon}/${lat}`);
+  return response.data.result || null;
+};
+
+// Analytics aggregation
+export const getAnalytics = async () => {
   try {
-    const url = `${API_BASE_URL}${endpoint}`;
-    console.log(`🔗 API Request: ${options.method || "GET"} ${url}`);
-
-    const response = await fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-        ...options.headers,
+    // Load hospitals and police from static files (fast and reliable)
+    const [hospitalsRes, policeRes] = await Promise.all([
+      fetch('/data/hospitals.json').then(r => r.json()),
+      fetch('/data/police.json').then(r => r.json())
+    ]);
+    
+    // Fetch real weather data from backend
+    const weatherData = await getWeather();
+    
+    return {
+      happiness: 0.75,
+      facilities: {
+        hospitals: hospitalsRes.length,
+        police: policeRes.length,
+        parks: 0,
       },
-      ...options,
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-
-    const data = await response.json();
-    console.log(`✅ API Response: ${endpoint}`, data);
-    return data;
+      weather: {
+        temp: 28, // Singapore average
+        uvIndex: weatherData.uvIndex || 'N/A',
+        uvLabel: weatherData.label || 'N/A',
+        description: `UV: ${weatherData.uvIndex || 'N/A'} (${weatherData.label || 'N/A'})`,
+        aqi: weatherData.aqi?.aqi || weatherData.aqi || 45,
+        status: weatherData.aqi?.status || 'Good'
+      },
+      forecast: null
+    };
   } catch (error) {
-    console.error(`❌ API Request Error: ${endpoint}`, error);
+    console.error('Error fetching analytics:', error);
     throw error;
   }
 };
 
-// Mock data for development
-export const mockAPI = {
-  // Get hospitals mock data
-  getHospitals: async () => {
-    try {
-      const result = await axios.get(`${API_BASE_URL}/public-service/hospitals`);
-      return result.data;
-    } catch (error) {
-      console.warn("Hospital API failed, using fallback mock data");
-      return {
-        result: [
-          {
-            name: "Singapore General Hospital",
-            geometry: { coordinates: [103.8462, 1.2801] }
-          }
-        ]
-      };
-    }
-  },
-
-  // Get police stations mock data
-  getPoliceStations: async () => {
-    try {
-      const result = await axios.get(`${API_BASE_URL}/public-service/polices`);
-      return result.data;
-    } catch (error) {
-      console.warn("Police API failed, using fallback mock data");
-      return {
-        result: [
-          {
-            name: "Central Police Division", 
-            geometry: { coordinates: [103.8520, 1.2840] }
-          }
-        ]
-      };
-    }
-  },
-
-  // Air Quality Index data
-  getAQI: async () => {
-    const data = (await axios.get(`${API_BASE_URL}/public-service/weather`))
-      .data;
-    console.log("AQI : ", { value: data.aqi.aqi, status: data.aqi.status });
-    return {
-      value: data.aqi.aqi,
-      status: data.aqi.status,
-    };
-  },
-
-  // UV Index data
-  getUVIndex: async () => {
-    const uv = (await axios.get(`${API_BASE_URL}/public-service/weather`)).data;
-    console.log("UV : ", {
-      value: uv.weather.uvIndex,
-      status: uv.weather.label,
-    });
-    return {
-      value: uv.weather.uvIndex,
-      status: uv.weather.label,
-      timestamp: new Date().toISOString(),
-    };
-  },
-
-  getHappinessIndex: async () => {
-    const happiness = (
-      await axios.get(`${API_BASE_URL}/public-service/happiness`)
-    ).data;
-
-    console.log("Happiness : ", {
-      value: happiness.result.happinessIndex,
-    });
-    if (happiness.result.happinessIndex <= 30)
-      return {
-        value: happiness.result.happinessIndex,
-        status: "Bad",
-        timestamp: new Date().toISOString(),
-      };
-    if (happiness.result.happinessIndex <= 60)
-      return {
-        value: happiness.happinessIndex,
-        status: "Moderate",
-        timestamp: new Date().toISOString(),
-      };
-    return {
-      value: happiness.result.happinessIndex,
-      status: "Good",
-      timestamp: new Date().toISOString(),
-    };
-  },
-
-  // Analytics data for charts
-  getAnalyticsData: async () => {
-    const [healthFacility, Police, Park, Fire] = await Promise.all([
-      (
-        await axios.get(`${API_BASE_URL}/public-service/hospitals`)
-      ).data.result.length,
-      (
-        await axios.get(`${API_BASE_URL}/public-service/polices`)
-      ).data.result.length,
-      (
-        await axios.get(`${API_BASE_URL}/public-service/parks`)
-      ).data.result.length,
-      (
-        await axios.get(`${API_BASE_URL}/public-service/fire`)
-      ).data.result.length,
-    ]);
-    const forecastingWater = await axios.get(
-      `${API_BASE_URL}/predict/forecast`
-    );
-    console.log("Forecasting data loaded:", forecastingWater.data);
-    return {
-      reports: [
-        { name: "", value: 12 },
-        { name: "Feb", value: 19 },
-        { name: "Mar", value: 25 },
-        { name: "Apr", value: 31 },
-        { name: "May", value: 28 },
-        { name: "Jun", value: 35 },
-      ],
-      categories: [
-        { name: "Health Facility", value: healthFacility },
-        { name: "Police", value: Police },
-        { name: "Park", value: Park },
-        { name: "Fire Station", value: Fire },
-      ],
-    };
-  },
-};
-
-// Public Service APIs
-export const publicServiceAPI = {
-  // Get all hospitals
-  getHospitals: async () => {
-    try {
-      const result = await axios.get(
-        `${API_BASE_URL}/public-service/hospitals`
-      );
-      return result.data;
-    } catch (error) {
-      console.warn("Using mock hospital data due to API error", error);
-      // Return mock data with proper structure
-      return {
-        result: [
-          {
-            name: "Singapore General Hospital",
-            geometry: {
-              coordinates: [103.8462, 1.2801]
-            }
-          },
-          {
-            name: "National University Hospital",
-            geometry: {
-              coordinates: [103.7838, 1.2966]
-            }
-          }
-        ]
-      };
-    }
-  },
-
-  // Get all police stations
-  getPoliceStations: async () => {
-    try {
-      const result = await axios.get(
-        `${API_BASE_URL}/public-service/polices`
-      );
-      return result.data;
-    } catch (error) {
-      console.warn("Using mock police data due to API error", error);
-      // Return mock data with proper structure
-      return {
-        result: [
-          {
-            name: "Central Police Division",
-            geometry: {
-              coordinates: [103.8520, 1.2840]
-            }
-          },
-          {
-            name: "Tanglin Police Division",
-            geometry: {
-              coordinates: [103.8240, 1.3048]
-            }
-          }
-        ]
-      };
-    }
-  },
-
-  // Get all parks
-  getParks: async () => {
-    try {
-      const result = await axios.get(
-        `${API_BASE_URL}/public-service/parks`
-      );
-      return result.data;
-    } catch (error) {
-      console.warn("Using mock parks data due to API error", error);
-      // Return mock data with proper structure
-      return {
-        result: [
-          {
-            name: "Marina Bay Gardens",
-            geometry: {
-              coordinates: [103.8636, 1.2815]
-            }
-          },
-          {
-            name: "East Coast Park",
-            geometry: {
-              coordinates: [103.9065, 1.3006]
-            }
-          },
-          {
-            name: "Botanic Gardens",
-            geometry: {
-              coordinates: [103.8154, 1.3138]
-            }
-          }
-        ]
-      };
-    }
-  },
-
-  // Get all fire stations
-  getFireStations: async () => {
-    try {
-      const result = await axios.get(
-        `${API_BASE_URL}/public-service/fire`
-      );
-      return result.data;
-    } catch (error) {
-      console.warn("Using mock fire stations data due to API error", error);
-      // Return mock data with proper structure
-      return {
-        result: [
-          {
-            name: "Central Fire Station",
-            geometry: {
-              coordinates: [103.8500, 1.2900]
-            }
-          },
-          {
-            name: "Marina Fire Station",
-            geometry: {
-              coordinates: [103.8600, 1.2800]
-            }
-          }
-        ]
-      };
-    }
-  },
-};
-
-// Report APIs
-export const reportAPI = {
-  // Submit a new report with photo
-  submitReport: async (formData) => {
-    try {
-      return await apiRequest("/report/", {
-        method: "POST",
-        body: formData,
-        headers: {},
-      });
-    } catch (error) {
-      console.error("Report submission failed:", error);
-      return {
-        success: true,
-        message: "Report submitted successfully (mock)",
-        id: Date.now(),
-      };
-    }
-  },
-
-  // Get all reports
-  getReports: async () => {
-    try {
-      return await apiRequest("/report/");
-    } catch (error) {
-      console.warn("Using mock reports due to API error");
-      return {
-        reports: [
-          {
-            id: 1,
-            description: "Pothole on Main Street",
-            location: { lat: 1.2831, lng: 103.8545 },
-            timestamp: new Date().toISOString(),
-            status: "pending",
-          },
-        ],
-      };
-    }
-  },
-};
-
-// Combined API service
-const apiService = {
-  healthCheck,
-  publicServiceAPI,
-  reportAPI,
-  mockAPI,
-};
-
-export default apiService;
+export default api;
